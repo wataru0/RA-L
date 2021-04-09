@@ -1,2 +1,4 @@
 .DS_Stor
 ISIS2020/
+*.npy
+fig/
