@@ -49,6 +49,7 @@ config = {
 def arg_parser():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--agent', help = 'put in agent name for evaluation', type = str, default = 'Baseline-16million-v3')
+    parser.add_argument('--n_episodes', help= 'put in number of episodes', type=int, default= 10)
     parser.add_argument('--video', default=False, action='store_true')    
     return parser.parse_args()
 
@@ -95,7 +96,12 @@ class ChangeJointRangeEnv(gym.Wrapper):
 
         obs,reward,done,info = self.env.step(action)
         #---rewardの再計算
-        reward = reward - 0.5 # survive_reward = 0.5にするため
+        # reward = reward - 0.5 # survive_reward = 0.5にするため
+
+        # kが小さい時はforward rewardだけにする
+        if k < 60:
+            reward -= info["reward_ctrl"]
+            reward -= info["reward_survive"]
 
 
         return obs,reward,done,info
@@ -123,11 +129,11 @@ class ChangeJointRangeEnv(gym.Wrapper):
         elif self.crippled_leg == 4:
             pass
 
-def save_reward_map(map, save_path, agent_name, save_name):
+def save_reward_map(map, save_path, agent_name, save_name, n_episodes):
     for seed in range(1, 6):
         seed_list = map[seed-1,:,:]
         seed_list = np.sum(seed_list, axis=0)
-        seed_list = seed_list/100
+        seed_list = seed_list/n_episodes
         np.save(save_path + agent_name + save_name + "_seed=" + str(seed), seed_list)
 
 def main():
@@ -142,7 +148,7 @@ def main():
     os.makedirs(figdir,exist_ok=True)
 
     # Create ndarray save dir
-    nd_dir = "./data_each_term_of_rewardfunction_100episodes/" + str(args.agent) + "/"
+    nd_dir = "./data_updateRfunc/" + str(args.agent) + "/"
     os.makedirs(nd_dir, exist_ok=True)
 
     # Create and wrap the environment 
@@ -208,7 +214,7 @@ def main():
             # kを0から1まで，0.01刻みで変化させる
             for k in tqdm(range(0, 100)):
                 # 故障が起きる環境でのrewardを求めるループ(100)
-                for episode in range(100):
+                for episode in range(args.n_episodes):
                     # iteration of time steps, default is 1000 time steps
                     for i in range(1000):
                         # predict phase
@@ -223,6 +229,10 @@ def main():
                         contacts += info['reward_contact']
                         survives += info['reward_survive']
 
+                        if k < 60:
+                            ctrls -= info['reward_ctrl']
+                            survives -= info['reward_survive']
+                        
                         if done:
                             break
 
@@ -266,14 +276,14 @@ def main():
     for seed in range(1, 6):
         seed_gene = k_gene[seed-1,:,:]
         seed_gene = np.sum(seed_gene, axis=0)
-        seed_gene = seed_gene/100 # 平均報酬
+        seed_gene = seed_gene/args.n_episodes # 平均報酬, It was '/100' before.
         np.save(nd_dir + str(agentName[0]) + "_rewardForEachK" + "_seed=" + str(seed), seed_gene)
 
     # 報酬関数の各項の二次元配列を一次元配列に変形してnpyで保存
-    save_reward_map(reward_forward_map, nd_dir, str(agentName[0]), "_rewardForward")
-    save_reward_map(reward_ctrl_map, nd_dir, str(agentName[0]), "_rewardCtrl")
-    save_reward_map(reward_contact_map, nd_dir, str(agentName[0]), "_rewardContact")
-    save_reward_map(reward_survive_map, nd_dir, str(agentName[0]), "_rewardSurvive")
+    save_reward_map(map=reward_forward_map, save_path=nd_dir, agent_name=str(agentName[0]), save_name="_rewardForward", n_episodes=args.n_episodes)
+    save_reward_map(map=reward_ctrl_map, save_path=nd_dir, agent_name=str(agentName[0]), save_name="_rewardCtrl", n_episodes=args.n_episodes)
+    save_reward_map(map=reward_contact_map, save_path=nd_dir, agent_name=str(agentName[0]), save_name="_rewardContact", n_episodes=args.n_episodes)
+    save_reward_map(map=reward_survive_map, save_path=nd_dir, agent_name=str(agentName[0]), save_name="_rewardSurvive", n_episodes=args.n_episodes)
     
 
 if __name__=='__main__':

@@ -11,10 +11,10 @@ import argparse
 from scipy import signal
 import datetime as dt
 
-# def arg_parser():
-#     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-#     parser.add_argument('--agent', help = 'put in agent name for evaluation', type = str, default = 'Baseline-16million-v3')
-#     return parser.parse_args()
+def arg_parser():
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--term', help = 'Visualize each term of the reward function.', type = str, default = 'forward')
+    return parser.parse_args()
 
 # スプライン補間でスムージング
 def spline_interp(in_x, in_y):
@@ -32,7 +32,7 @@ def moving_avg(in_x, in_y):
     return out_x_dat, np_y_conv
 
 def main():
-    # args = arg_parser()
+    args = arg_parser()
     
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum2-v1", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
@@ -46,26 +46,37 @@ def main():
     }
 
     # Create figure dir
-    figdir = "./fig/"
+    figdir = "./fig/term/"
     os.makedirs(figdir,exist_ok=True)
 
     sns.set()
     plt.figure()
     fig, ax = plt.subplots()
 
+    path_name = ""
+    if args.term == "forward":
+        path_name = "rewardForward"
+    elif args.term == "ctrl":
+        path_name = "rewardCtrl"
+    elif args.term == "contact":
+        path_name = "rewardContact"
+    elif args.term == "survive":
+        path_name = "rewardSurvive"
+
     for file in filename:
         a = {}
         for seed in range(1, 6):
-            # 既存の報酬関数で評価した結果が入っているディレクトリ
-            # a[seed] = np.load("data100episodes/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+            # 報酬関数今までのやつで評価した結果が入っているディレクトリ
+            # a[seed] = np.load("data_each_term_of_rewardfunction/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
             
-            # 改良した報酬関数の結果が入っているディレクトリ
-            a[seed] = np.load("./data_updateRfunc/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+            # 報酬関数を変えた場合の評価が入っているディレクトリ
+            a[seed] = np.load("data_updateRfunc/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
+            
         
         # smoothing
-        for i in range(1,6):
-            # default is (a[i], 51, 3)
-            a[i] = signal.savgol_filter(a[i],51,3)
+        # for i in range(1,6):
+        #     # default is (a[i], 51, 3)
+        #     a[i] = signal.savgol_filter(a[i],11,3)
         
         
         col = np.linspace(0.0,1.0,100)
@@ -85,26 +96,23 @@ def main():
         DF = pd.DataFrame(data=aa, columns=['k','AverageReward'], dtype='float')
         # print(DF)
 
+        
         sns.lineplot(x="k", y="AverageReward", data=DF, ax=ax, label=label[file])
 
     ax.set_ylabel('Average Reward')
     ax.set_xlabel('k')
     ax.legend()
-
+    
 
     # save fig
     plt.tight_layout()
     plt.tick_params(labelsize=10)
     ax.set_rasterized(True) 
+    plt.title(path_name, fontsize=10)
 
-    # type3 font を消す
-    # plt.rcParams['text.usetex'] = True 
-    # plt.rcParams['text.latex.preamble'] = [r'\usepackage{sansmath}', r'\sansmath'] 
-    # plt.rcParams['font.family'] = 'sans-serif'
-    # plt.rcParams['font.sans-serif'] = 'Helvetica'
     now = dt.datetime.now()
     time = now.strftime("%Y%m%d-%H%M%S")
-    plt.savefig(figdir + "generalization_{}.png".format(time))
+    plt.savefig(figdir + path_name +"_generalization_{}.png".format(time))
 
 if __name__=='__main__':
     main()
