@@ -25,6 +25,7 @@ import pandas as pd
 import math
 import datetime as dt
 from  tqdm import tqdm
+import gym_custom
 
 from stable_baselines.common.policies import MlpPolicy
 from stable_baselines.bench import Monitor
@@ -50,7 +51,8 @@ reward_contact_map = np.zeros((5, 100, 100))
 reward_survive_map = np.zeros((5, 100, 100))
 
 config = {
-    'env':'Ant-v2',
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
     'joint_min_range':0.0,
     'joint_max_range':1.0,
 }
@@ -100,7 +102,7 @@ class ChangeJointRangeEnv(gym.Wrapper):
 
             if joint_mask != []:
                 for i in joint_mask:
-                    action[i] = action[i] * 0.9
+                    action[i] = action[i] * 0.2
 
         obs,reward,done,info = self.env.step(action)
         #---rewardの再計算
