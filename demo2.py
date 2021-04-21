@@ -2,7 +2,7 @@ import os
 import gym
 import gym_custom
 
-env = gym.make('CustomAnt-v0')
+env = gym.make('TestAnt-v0')
 env.reset()
 done = False
 
