@@ -1,5 +1,7 @@
-# 2021/4/12
-# ant-v2の終了条件を研究用に改良したもの
+# 2021/4/21
+# ant-v2の終了条件を研究用に改良するためにテストする環境
+# antが転倒した時の検出を行うために試行錯誤する環境
+
 import numpy as np
 from gym import utils
 from gym.envs.mujoco import mujoco_env
@@ -7,13 +9,11 @@ import mujoco_py
 import math
 
 # forward_reward_buffer = []
-class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
+class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     quat_current = np.zeros(4)
     vec = np.zeros(3)
     
     def __init__(self):
-        # xml_path = get_tmp_xml_abs_path("custom_terrain_ant.xml")
-        # mujoco_env.MujocoEnv.__init__(self, xml_path, 5)
         mujoco_env.MujocoEnv.__init__(self, 'ant.xml', 5)
         utils.EzPickle.__init__(self)
         self.quat_current = np.array([math.cos(0.01/2), math.sin(0.01/2), 0.0, 0.0])
@@ -62,7 +62,7 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         mujoco_py.functions.mju_rotVecQuat(res2, self.vec, res)
         # if res2[0] < 0:
         #     res2 = res2 * -1
-        # print(res2)
+        print(res2)
         self.quat_current = res
         # ==================================================
 
