@@ -36,13 +36,18 @@ def main():
     
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum2-v1", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
-    filename = ["Baseline-16million-v3"]
+    # filename = ["Baseline-16million-v3"]
+    filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
         "Curriculum-v4-16million":"CDR-v2", 
         # "Curriculum-v4-16million":"CDR", 
-        "Curriculum2-v1":"CDR-v1"
+        "Curriculum2-v1":"CDR-v1",
+        "Baseline":"Baseline",
+        "UDR":"UDR",
+        "CDR-v1":"CDR-v1",
+        "CDR-v2":"CDR-v2",
     }
 
     # Create figure dir
@@ -70,7 +75,11 @@ def main():
             # a[seed] = np.load("data_each_term_of_rewardfunction/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
             
             # 報酬関数を変えた場合の評価が入っているディレクトリ
-            a[seed] = np.load("data_updateRfunc/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
+            # a[seed] = np.load("data_updateRfunc/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
+
+            # 自作のgym環境での評価が入っているディレクトリ
+            # a[seed] = np.load("data_customEnv/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
+            a[seed] = np.load("Data/CustomAnt/" + file + "/" + file + "_" + path_name + "_seed=" +  str(seed) + ".npy")
             
         
         # smoothing
