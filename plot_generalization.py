@@ -36,13 +36,18 @@ def main():
     
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum2-v1", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
-    filename = ["Baseline-16million-v3"]
+    # filename = ["Baseline-16million-v3"]
+    filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
         "Curriculum-v4-16million":"CDR-v2", 
         # "Curriculum-v4-16million":"CDR", 
-        "Curriculum2-v1":"CDR-v1"
+        "Curriculum2-v1":"CDR-v1",
+        "Baseline":"Baseline",
+        "UDR":"UDR",
+        "CDR-v1":"easy-to-hard",
+        "CDR-v2":"hard-to-easy",
     }
 
     # Create figure dir
@@ -60,12 +65,17 @@ def main():
             # a[seed] = np.load("data100episodes/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
             
             # 改良した報酬関数の結果が入っているディレクトリ
-            a[seed] = np.load("./data_updateRfunc/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
-        
+            # a[seed] = np.load("./data_updateRfunc/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+
+            # 自作のgym環境での評価が入っているディレクトリ
+            # a[seed] = np.load("./data_customEnv/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+            a[seed] = np.load("./Data/CustomAnt/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+
         # smoothing
         for i in range(1,6):
             # default is (a[i], 51, 3)
-            a[i] = signal.savgol_filter(a[i],51,3)
+            # 21 3/ 31 3
+            a[i] = signal.savgol_filter(a[i],41,3)
         
         
         col = np.linspace(0.0,1.0,100)
