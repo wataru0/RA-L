@@ -41,7 +41,7 @@ config = {
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
-    'learning_rate':0.00022
+    'learning_rate':0.00020
 }
 
 # Create log dir
