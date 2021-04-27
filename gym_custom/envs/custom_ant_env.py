@@ -16,8 +16,8 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # mujoco_env.MujocoEnv.__init__(self, xml_path, 5)
         mujoco_env.MujocoEnv.__init__(self, 'ant.xml', 5)
         utils.EzPickle.__init__(self)
-        self.quat_current = np.array([math.cos(0.01/2), math.sin(0.01/2), 0.0, 0.0])
-        self.vec = np.array([0.0, 1.0, 0.0])
+        self.quat_current = np.array([1.0, 0.0, 0.0, 0.0])
+        self.vec = np.array([0.0, 0.0, 1.0])
 
     def step(self, a):
         xposbefore = self.get_body_com("torso")[0]
@@ -41,9 +41,6 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
         # ---after---
         notdone = np.isfinite(state).all()
-        # if forward_reward == 0:
-        #     notdone = False
-
 
         # bodyの向きをデカルト座標，クォータニオンで表現したもの=====
         # 転倒を体の向きで検知したいが，現状よくわからない
@@ -54,15 +51,15 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # print(self.data.get_body_xquat("torso"))
         res = np.zeros(4)
         mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
-        # if res[0] < 0:
-        #     res = res * -1
-        # print(res)
+        if res[0] < 0:
+            res = res * -1
 
-        res2 = np.zeros(3)
-        mujoco_py.functions.mju_rotVecQuat(res2, self.vec, res)
-        # if res2[0] < 0:
-        #     res2 = res2 * -1
-        # print(res2)
+        torso_vec = np.zeros(3)
+        mujoco_py.functions.mju_rotVecQuat(torso_vec, self.vec, quat_after)
+        # Terminate the episode when the agent falls over.
+        if torso_vec[2] < -0.8:
+            notdone = False
+
         self.quat_current = res
         # ==================================================
 
@@ -90,6 +87,7 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
                 reward_ctrl=-ctrl_cost,
                 reward_contact=-contact_cost,
                 reward_survive=survive_reward,
+                torso_vec=torso_vec,
             ),
         )
 

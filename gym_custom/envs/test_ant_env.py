@@ -7,6 +7,11 @@ from gym import utils
 from gym.envs.mujoco import mujoco_env
 import mujoco_py
 import math
+import sys, os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../utils'))
+import quaternion
+from quaternion import my_mulQuat
 
 class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     quat_current = np.zeros(4)
@@ -15,8 +20,9 @@ class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     def __init__(self):
         mujoco_env.MujocoEnv.__init__(self, 'ant.xml', 5)
         utils.EzPickle.__init__(self)
-        self.quat_current = np.array([math.cos(0.01/2), math.sin(0.01/2), 0.0, 0.0])
-        self.vec = np.array([0.0, 1.0, 0.0])
+        # self.quat_current = np.array([math.cos(0.01/2), math.sin(0.01/2), 0.0, 0.0])
+        self.quat_current = np.array([1.0, 0.0, 0.0, 0.0])
+        self.vec = np.array([0.0, 0.0, 1.0])
 
     def step(self, a):
         xposbefore = self.get_body_com("torso")[0]
@@ -38,24 +44,26 @@ class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # 終了条件
         notdone = np.isfinite(state).all()
 
-
         # bodyの向きをデカルト座標，クォータニオンで表現したもの=====
         # 転倒を体の向きで検知したいが，現状よくわからない
         # print("---")
         # print(self.data.body_xmat)
         # print(self.data.body_xquat)
-        
         # print(self.data.get_body_xquat("torso"))
+
         res = np.zeros(4)
         mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
-        # if res[0] < 0:
-        #     res = res * -1
+        # mujoco_py.functions.mju_mulQuat(res, quat_after, self.quat_current)
+        # print(res, my_mulQuat(quat_after, self.quat_current))
+        if res[0] < 0:
+            res = res * -1
         # print(res)
 
         res2 = np.zeros(3)
-        mujoco_py.functions.mju_rotVecQuat(res2, self.vec, res)
-        if res2[0] < 0:
-            res2 = res2 * -1
+        # mujoco_py.functions.mju_rotVecQuat(res2, self.vec, res) # これ間違い
+        mujoco_py.functions.mju_rotVecQuat(res2, self.vec, quat_after) # get_body_xquat は常に最初の位置からの回転を表していた．だから[0, 0, 1]にクォータニオンをかけると，001が今どこを向いているのかが取得できる！
+        # if res2[0] < 0.0:
+        #     res2 = res2 * -1
         # print(res2)
         self.quat_current = res
         # ==================================================
@@ -84,7 +92,9 @@ class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
                 reward_ctrl=-ctrl_cost,
                 reward_contact=-contact_cost,
                 reward_survive=survive_reward,
-                quat=res2
+                res2=res2,
+                dist=dist,
+                res=res,
             ),
         )
 
@@ -106,5 +116,5 @@ class TestAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         return self._get_obs()
 
     def viewer_setup(self):
-        self.viewer.cam.distance = self.model.stat.extent * 0.05
+        self.viewer.cam.distance = self.model.stat.extent * 0.5
         self.viewer.cam.elevation = -90
