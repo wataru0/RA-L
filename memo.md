@@ -169,3 +169,16 @@ class ChangeJointRangeEnv(gym.Wrapper):
 
         self.total_reward = 0
         return self.env.reset(**kwargs)
+
+## Baseline_CustomAnt
+config = {
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
+    'joint_range1':-1, # 注意！ラッパー外してある713
+    'joint_range2':1,
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00022
+}
