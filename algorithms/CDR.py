@@ -37,6 +37,7 @@ class CDREnv(gym.Wrapper):
         self.total_reward = 0
         # rewardを保存しておくバッファー
         self.buffer = [] 
+        self.buffer_size = 100
         # 前回の分布での報酬の平均値を格納しておく変数
         self.before_average = 0 
         self.joint_num = 0
@@ -44,6 +45,8 @@ class CDREnv(gym.Wrapper):
         self.cReward = 0 
         # 各関節の故障率を格納するリスト,action_spaceと同じ大きさで1に初期化
         self.actuator_list = np.ones(self.action_space.shape)
+        # kのアップデートサイズ
+        self.update_k_step_size = 0.01
 
         # minもmaxも1からスタート(v1),minもmaxも0からスタート(v2)
         if version == 1:
@@ -60,7 +63,7 @@ class CDREnv(gym.Wrapper):
         self.cReward = 0 
 
         # bufferにパフォーマンスを格納していく，buffer_sizeを超えたら評価する
-        if len(self.buffer) < config['buffer_size']:
+        if len(self.buffer) < self.buffer_size:
             # joint actuator force rangeが[0.9,1]の分布の範囲である時性能を評価する．
             # bufferに格納
             self.buffer.append(self.total_reward)
@@ -74,18 +77,18 @@ class CDREnv(gym.Wrapper):
                 # Curriculum2-v1
                 if self.version == 1:
                     if self.joint_min > 0.0:
-                        self.joint_min -= config['update_k_step_size']
+                        self.joint_min -= self.update_k_step_size
                         # kのminとmaxの差が0.1以上になったらmaxも減らす
                         if abs(self.joint_max - self.joint_min) >= 0.1:
-                            self.joint_max -= config['update_k_step_size']
+                            self.joint_max -= self.update_k_step_size
 
                 # Curriculum2-v2
                 if self.version == 2:
                     if self.joint_max <= 1.0:
-                        self.joint_max += config['update_k_step_size']
+                        self.joint_max += self.update_k_step_size
                         # kのminとmaxの差が0.1以上になったらminも上昇
                         if abs(self.joint_max - self.joint_min) >= 0.1:
-                            self.joint_min += config['update_k_step_size']
+                            self.joint_min += self.update_k_step_size
 
             # else: #能力アップしていなかったら
             #     # 下げなくていいかも，k＝０から上昇させるときは，
