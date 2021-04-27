@@ -5,3 +5,6 @@ fig/
 videos/
 tmp/
 rensyu.py
+trained_agent_dir/
+monitor_log/
+tensorboard_log/
