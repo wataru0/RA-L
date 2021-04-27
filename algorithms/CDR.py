@@ -20,6 +20,9 @@ best_mean_reward = -np.inf
 # 更新数
 n_updates = 0 
 
+def henkan(val,start1,stop1,start2,stop2):
+    return start2 + (stop2 - start2) * ((val-start1)/(stop1 - start1))
+
 class CDREnv(gym.Wrapper):
     def __init__(self, env, value=None, version=2):
         super().__init__(env) # 親クラスの呼び出しが必要
