@@ -145,7 +145,7 @@ def main():
 
     # Create log dir
     tensorboard_log_dir = "./tensorboard_log/"
-    os.makedirs(tensorboard_log_dir,exist_ok=True)
+    # os.makedirs(tensorboard_log_dir,exist_ok=True)
 
     # # Create result tmp dir
     # figdir = "./fig/"
@@ -161,7 +161,7 @@ def main():
     #env1 = NormalEnv(env1) # reward custom
 
     if args.video:
-        broken_env = wrappers.Monitor(broken_env,'./videos/' + args.agent + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
+        broken_env = wrappers.Monitor(broken_env,'./output/videos/' + args.agent + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
 
     # broken_env = DummyVecEnv([lambda :broken_env]) #複数の環境用の単純なベクトル化されたラッパーを作成し、現在のPythonプロセスで各環境を順番に呼び出します。
     # env1 = DummyVecEnv([lambda : env1])
