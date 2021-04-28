@@ -20,10 +20,12 @@ best_mean_reward = -np.inf
 # 更新数
 n_updates = 0 
 
-def henkan(val,start1,stop1,start2,stop2):
+def henkan(val, start1, stop1, start2, stop2):
     return start2 + (stop2 - start2) * ((val-start1)/(stop1 - start1))
 
 class CDREnv(gym.Wrapper):
+    # クラス変数
+
     def __init__(self, env, value=None, version=2):
         super().__init__(env) # 親クラスの呼び出しが必要
         # 以下インスタンス変数
@@ -56,7 +58,7 @@ class CDREnv(gym.Wrapper):
             self.joint_min = 0.0 
             self.joint_max = 0.0 
 
-    def reset(self,**kwargs): 
+    def reset(self, **kwargs): 
         # **kwargs:任意個数の引数を辞書として受け取る
         self.reset_task()
         rewardlist.append(self.cReward)
@@ -108,7 +110,7 @@ class CDREnv(gym.Wrapper):
         return self.env.reset(**kwargs)
 
 
-    def step(self,action):
+    def step(self, action):
         if self.cripple_mask is not None:
             joint_mask = [i for i,x in enumerate(self.cripple_mask) if x == 99] # 99が入っているインデックスを取得
             # print(joint_mask) # [4,5]のように表示される
@@ -158,7 +160,7 @@ class CDREnv(gym.Wrapper):
         
         return obs, reward, done, info
 
-    def reset_task(self,value=None):
+    def reset_task(self, value=None):
         # randomly cripple leg (4 is nothing)
         # (0,4)だと0から4個なので0,1,2,3までしかでない！！
         self.crippled_leg = value if value is not None else np.random.randint(0,5)
@@ -207,3 +209,32 @@ class CDREnv(gym.Wrapper):
             geom_rgba[12, :3] = np.array([1, 0, 0])
             geom_rgba[13, :3] = np.array([1, 0, 0])
         self.model.geom_rgba[:] = geom_rgba 
+
+    def visualize_fig(self, save_path):
+        # figure
+        figdir = "./fig/Curriculum"
+        os.makedirs(figdir, exist_ok=True)
+        
+        plt.figure()
+        fig, (ax1,ax2,ax3,ax4) = plt.subplots(1,4,figsize=(45,10))
+        sns.heatmap(actuator_map,ax=ax1)
+        ax1.set(xlabel='joint',ylabel='k')
+        sns.heatmap(actuator_power_map,ax=ax2)
+        ax2.set(xlabel='joint',ylabel='actuator force')
+        ax3.plot(joint_actuator_range_max)
+        ax3.set(xlabel='timesteps',ylabel='k_max')
+        ax4.plot(joint_actuator_range_min)
+        ax4.set(xlabel='timesteps',ylabel='k_min')
+        plt.savefig(figdir + "/" + "parameter_fluctuation-" + save_path)
+
+    def output_csv(self, save_path, seed):
+        # csv
+        csvdir = "./output/csv/reward"
+        os.makedirs(csvdir, exist_ok=True)
+        R = np.array(rewardlist)
+        np.savetxt(csvdir + '/'+ save_path +'-'+str(seed) +'.csv', R, delimiter=',')
+        
+        csvdir2 = "./output/csv/joint_actuator_range"
+        os.makedirs(csvdir2, exist_ok=True)
+        np.savetxt(csvdir2+'/'+ save_path +'-'+ 'joint_max-' +str(seed) +'.csv',joint_actuator_range_max,delimiter=',')
+        np.savetxt(csvdir2+'/'+ save_path +'-'+ 'joint_mix-' +str(seed) +'.csv',joint_actuator_range_min,delimiter=',')
