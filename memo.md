@@ -182,3 +182,76 @@ config = {
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
     'learning_rate':0.00020
 }
+
+## Baseline_CustomAntEnv
+config = {
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
+    'joint_range1':-1, # 注意！ラッパー外してある713
+    'joint_range2':1,
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':8, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00030
+}
+
+## Baseline_CustomAntEnv-v2
+config = {
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
+    'joint_range1':-1, # 注意！ラッパー外してある713
+    'joint_range2':1,
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00025
+}
+
+## lr-15e-5
+config = {
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
+    'joint_range1':-1, # 注意！ラッパー外してある713
+    'joint_range2':1,
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00015
+}
+
+## n_step-512
+config = {
+    # 'env':'Ant-v2',
+    'env':'CustomAnt-v0',
+    'joint_range1':-1, # 注意！ラッパー外してある713
+    'joint_range2':1,
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
+    'n_steps':512, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00025
+}
+
+---
+# Ablation study
+デフォルトのant環境の終了条件の有効性を検証するために行う
+config = {
+    # 'env':'CustomAnt-v0',
+    'env':'AblationAnt-v0',
+    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数  (2e6
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00020,
+    # 'joint_min_range':0,
+    # 'joint_max_range':1,
+    # 'buffer_size':100,
+    # 'update_k_step_size':0.01 # k のアップデートサイズ
+}
+
+## not02
+state[2] <= 1.0
+notdone = np.isfinite(state).all() and state[2] <= 1.0
