@@ -7,7 +7,7 @@ from gym.envs.mujoco import mujoco_env
 import mujoco_py
 import math
 
-class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
+class AblationAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     quat_current = np.zeros(4)
     vec = np.zeros(3)
     

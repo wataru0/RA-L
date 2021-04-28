@@ -1,5 +1,6 @@
 from gym_custom.envs.custom_ant_env import CustomAntEnv
 from gym_custom.envs.test_ant_env import TestAntEnv
+from gym_custom.envs.ablation_ant_env import AblationAntEnv
 # ------------
 # from ..registration import register
 # register(
