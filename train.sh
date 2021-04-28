@@ -8,8 +8,8 @@
 #$2:2番目の引数
 
 # 処理内容，seedを変えて五回トレーニング
-python train_Baseline.py --savedir=$1 --seed=1
-python train_Baseline.py --savedir=$1 --seed=2
-python train_Baseline.py --savedir=$1 --seed=3
-python train_Baseline.py --savedir=$1 --seed=4
-python train_Baseline.py --savedir=$1 --seed=5
+python train.py --savedir=$1 --seed=1 --algo=$2
+python train.py --savedir=$1 --seed=2 --algo=$2
+python train.py --savedir=$1 --seed=3 --algo=$2
+python train.py --savedir=$1 --seed=4 --algo=$2
+python train.py --savedir=$1 --seed=5 --algo=$2
