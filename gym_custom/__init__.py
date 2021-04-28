@@ -15,7 +15,7 @@ register(
 )
 register(
     id = "AblationAnt-v0",
-    entry_point = "gym_custom.envs.ablation_ant_env:AblationAntEnv,
+    entry_point = "gym_custom.envs.ablation_ant_env:AblationAntEnv",
     max_episode_steps = 1000,
     reward_threshold = 6000.0,
 )
