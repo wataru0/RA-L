@@ -35,8 +35,10 @@ class AblationAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         state = self.state_vector()
 
         # 終了条件の記述
-        # ---before---
-        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+        # before
+        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+        # after
+        notdone = np.isfinite(state).all() and state[2] <= 1.0
 
         done = not notdone
         ob = self._get_obs()
