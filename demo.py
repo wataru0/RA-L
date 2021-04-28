@@ -102,7 +102,7 @@ class ChangeJointRangeEnv(gym.Wrapper):
 
             if joint_mask != []:
                 for i in joint_mask:
-                    action[i] = action[i] * 0.2
+                    action[i] = action[i] * 0.0
 
         obs,reward,done,info = self.env.step(action)
         #---rewardの再計算
@@ -161,7 +161,7 @@ def main():
     #env1 = NormalEnv(env1) # reward custom
 
     if args.video:
-        broken_env = wrappers.Monitor(broken_env,'./output/videos/' + args.agent + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
+        broken_env = wrappers.Monitor(broken_env,'./output/videos/' + args.agent, force=True, video_callable=(lambda ep: ep % 1 == 0)) # for output video
 
     # broken_env = DummyVecEnv([lambda :broken_env]) #複数の環境用の単純なベクトル化されたラッパーを作成し、現在のPythonプロセスで各環境を順番に呼び出します。
     # env1 = DummyVecEnv([lambda : env1])
@@ -186,10 +186,10 @@ def main():
             load_dir = "./ISIS2020/trained_Curriculum/" + agent +"/"
         else:
             # ロードディレクトリの指定
-            load_dir = "./ISIS2020/trained_agent_dir/" + agent +"/"
+            load_dir = "./trained_agent_dir/" + agent +"/"
 
         # seedごとに平均報酬を獲得する ,range(1,6)
-        for seed in range(1,2):
+        for seed in range(1,4):
             
             if "range09-16million" in agentName and seed >= 4:
                 continue
