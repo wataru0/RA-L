@@ -31,17 +31,26 @@ import gym_custom
 best_mean_reward = -np.inf # 平均報酬
 n_updates = 0 # 更新数
 
+# ---------------------parameter discription --------------------------------
+# total_timesteps is the number of steps in total the agent will do for any 
+# environment. The total_timesteps can be across several episodes,
+# n_updates = total_timesteps // self.n_batch 
+# n_batchは、n_stepsにベクトル化された環境の数を掛けたものです。
+# つまり、n_stepを32に設定し、total_timesteps = 25000で1つの環境を実行する場合、ラーニングコール中にポリシーを781更新します（PPOは1つのバッチで複数の更新を実行できるため）
+# https://stackoverflow.com/questions/56700948/understanding-the-total-timesteps-parameter-in-stable-baselines-models
+# https://medium.com/aureliantactics/ppo-hyperparameters-and-ranges-6fc2d29bccbe
 # ---------------------------------------------------------------------------
+
 config = {
     # 'env':'Ant-v2',
     'env':'CustomAnt-v0',
     'joint_range1':-1, # 注意！ラッパー外してある713
     'joint_range2':1,
     'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数
-    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'n_steps':512, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
-    'learning_rate':0.00020
+    'learning_rate':0.00025
 }
 
 # Create log dir
