@@ -46,9 +46,9 @@ os.makedirs(log_dir,exist_ok=True)
 # ---------------------------------------------------------------------------
 
 config = {
-    # 'env':'CustomAnt-v0',
-    'env':'AblationAnt-v0',
-    'total_timestep':int(16e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数  (2e6
+    'env':'CustomAnt-v0',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
@@ -133,11 +133,10 @@ def main():
     # Save the model(agent)
     model.save(save_dir + "trainedAnt" + "-seed"+ str(args.seed))
 
-    # 今現在，UDRまでできている，おそらく，水曜日にCDR完成させる
     # CDR用の可視化処理
     if "CDR" in args.algo:
-        CDR.CDREnv.visualize(save_path=str(args.savedir) + '-seed' + str(args.seed))
-        CDR.CDREnv.output_csv(save_path=str(args.savedir), seed=args.seed)
+        CDR.CDREnv.visualize_fig(env, save_path=str(args.savedir) + '-seed' + str(args.seed))
+        CDR.CDREnv.output_csv(env, save_path=str(args.savedir), seed=args.seed)
 
 if __name__ == '__main__':
     main()
