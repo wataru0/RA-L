@@ -3,9 +3,14 @@
 # 提案手法
 # 今まで一つのファイルでトレーニングを回していたのをクラスごとにしっかり分けようというもの
 # train.pyを実行する際に，gym環境をラッパーすることで実装する
+import os
 import gym
 import numpy as np
 import random
+import matplotlib.pyplot as plt
+import seaborn as sns; sns.set()
+import pandas as pd
+import datetime
 
 #可視化用
 joint_actuator_range_max = [] # kの上限値を格納するリスト

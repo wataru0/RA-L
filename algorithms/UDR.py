@@ -8,6 +8,8 @@ import gym
 import numpy as np
 import random
 
+rewardlist = []
+
 class UDREnv(gym.Wrapper):
     def __init__(self,env,value=None):
         super().__init__(env) 
@@ -31,8 +33,8 @@ class UDREnv(gym.Wrapper):
             joint_mask = [i for i,x in enumerate(self.cripple_mask) if x == 99] # 99が入っているインデックスを取得
             #print(joint_mask) # [4,5]のように表示される
             if joint_mask != []:
-                action[joint_mask[0]]=henkan(action[joint_mask[0]],-1,1,config['joint_range1'],config['joint_range2'])
-                action[joint_mask[1]]=henkan(action[joint_mask[1]],-1,1,config['joint_range1'],config['joint_range2'])
+                action[joint_mask[0]]=henkan(action[joint_mask[0]],-1,1, -self.joint_range, self.joint_range)
+                action[joint_mask[1]]=henkan(action[joint_mask[1]],-1,1, -self.joint_range, self.joint_range)
             #ーーーー action = self.cripple_mask * action
             #print(action) # joint_maskの要素のaction値をクリップ(指定した値の間の値に変換)することができた
 
