@@ -236,7 +236,7 @@ config = {
 }
 
 ---
-# Ablation study
+# Ablation studyで訓練したエージェント
 デフォルトのant環境の終了条件の有効性を検証するために行う
 config = {
     # 'env':'CustomAnt-v0',
@@ -253,5 +253,46 @@ config = {
 }
 
 ## not02
-state[2] <= 1.0
+python train.py --savedir=not02 --algo=Baseline --ablation
+### 終了条件
 notdone = np.isfinite(state).all() and state[2] <= 1.0
+
+## default
+python train.py --savedir=default --algo=Baseline --ablation
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+
+## not10
+python train.py --savedir=not10 --algo=Baseline --ablation
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] >= 0.2
+
+## default+tento
+python train.py --savedir=default+tento --algo=Baseline --ablation
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+if torso_vec[2] < -0.8:
+    notdone = False
+
+## not10+tento
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] >= 0.2 
+if torso_vec[2] < -0.8:
+    notdone = False
+
+## not02+tento
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] <= 1.0
+if torso_vec[2] < -0.8:
+    notdone = False
+
+## tento
+### 終了条件
+if torso_vec[2] < -0.8:
+    notdone = False
+
+## 15+tento
+### 終了条件
+notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.5
+if torso_vec[2] < -0.8:
+    notdone = False
