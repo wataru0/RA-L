@@ -38,7 +38,23 @@ class AblationAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # before
         # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
         # after
-        notdone = np.isfinite(state).all() and state[2] <= 1.0
+        # notdone = np.isfinite(state).all() and state[2] <= 1.0
+        # notdone = np.isfinite(state).all() and state[2] >= 0.2 
+        # notdone = np.isfinite(state).all()
+        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.5
+
+        res = np.zeros(4)
+        mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
+        if res[0] < 0:
+            res = res * -1
+
+        torso_vec = np.zeros(3)
+        mujoco_py.functions.mju_rotVecQuat(torso_vec, self.vec, quat_after)
+        # Terminate the episode when the agent falls over.
+        if torso_vec[2] < -0.8:
+            notdone = False
+
+        self.quat_current = res
 
         done = not notdone
         ob = self._get_obs()

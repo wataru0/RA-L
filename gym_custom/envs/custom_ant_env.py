@@ -6,7 +6,9 @@ from gym.envs.mujoco import mujoco_env
 import mujoco_py
 import math
 
-# forward_reward_buffer = []
+# https://qiita.com/7shi/items/d37493c58a8bb8d7beed
+# クラス変数とインスタンス変数の使い分け注意！
+
 class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
     quat_current = np.zeros(4)
     vec = np.zeros(3)
@@ -37,10 +39,7 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         state = self.state_vector()
 
         # 終了条件の記述
-        # ---before---
-        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
-        # ---after---
-        notdone = np.isfinite(state).all()
+        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
 
         # bodyの向きをデカルト座標，クォータニオンで表現したもの=====
         # 転倒を体の向きで検知したいが，現状よくわからない
