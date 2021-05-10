@@ -9,3 +9,4 @@ trained_agent_dir/
 monitor_log/
 tensorboard_log/
 Ablation/
+test.py
