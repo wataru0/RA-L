@@ -15,6 +15,7 @@ def arg_parser():
 def main():
     args = arg_parser()
 
+    # env = gym.make('Ant-v2')
     env = gym.make('CustomAnt-v0')
     # env = gym.make('TestAnt-v0')
 

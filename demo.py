@@ -102,7 +102,7 @@ class ChangeJointRangeEnv(gym.Wrapper):
 
             if joint_mask != []:
                 for i in joint_mask:
-                    action[i] = action[i] * 0.0
+                    action[i] = action[i] * 1.0
 
         obs,reward,done,info = self.env.step(action)
         #---rewardの再計算
@@ -189,7 +189,7 @@ def main():
             load_dir = "./trained_agent_dir/" + agent +"/"
 
         # seedごとに平均報酬を獲得する ,range(1,6)
-        for seed in range(1,4):
+        for seed in range(1,6):
             
             if "range09-16million" in agentName and seed >= 4:
                 continue
