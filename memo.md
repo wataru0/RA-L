@@ -235,6 +235,7 @@ config = {
     'learning_rate':0.00025
 }
 
+
 ---
 # Ablation studyで訓練したエージェント
 デフォルトのant環境の終了条件の有効性を検証するために行う
@@ -296,3 +297,55 @@ if torso_vec[2] < -0.8:
 notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.5
 if torso_vec[2] < -0.8:
     notdone = False
+
+---
+---
+# 終了条件をdefault + 転倒で終了にした
+## Baseline_CustomAnt
+## UDR_CustomAnt
+## CDR-v1_CustomAnt
+## CDR-v2_CustomAnt
+config = {
+    'env':'CustomAnt-v0',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00020,
+    # 'joint_min_range':0,
+    # 'joint_max_range':1,
+    # 'buffer_size':100,
+    # 'update_k_step_size':0.01 # k のアップデートサイズ
+}
+
+## Baseline-lr=3
+config = {
+    'env':'CustomAnt-v0',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00030,
+    # 'joint_min_range':0,
+    # 'joint_max_range':1,
+    # 'buffer_size':100,
+    # 'update_k_step_size':0.01 # k のアップデートサイズ
+}
+
+## CDR-v1_CustomAnt_upperfix
+## CDR-v2_CustomAnt_lowerfix
+config = {
+    'env':'CustomAnt-v0',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00020,
+    # 'joint_min_range':0,
+    # 'joint_max_range':1,
+    # 'buffer_size':100,
+    # 'update_k_step_size':0.01 # k のアップデートサイズ
+}
