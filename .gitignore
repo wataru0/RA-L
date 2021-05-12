@@ -10,3 +10,4 @@ monitor_log/
 tensorboard_log/
 Ablation/
 test.py
+MUJOCO_LOG.txt
