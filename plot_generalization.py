@@ -37,7 +37,8 @@ def main():
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum2-v1", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3"]
-    filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
+    # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
+    filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt", "CDR-v2_CustomAnt"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -48,6 +49,10 @@ def main():
         "UDR":"UDR",
         "CDR-v1":"easy-to-hard",
         "CDR-v2":"hard-to-easy",
+        "Baseline_CustomAnt":'Baseline', 
+        "UDR_CustomAnt":'UDR', 
+        "CDR-v1_CustomAnt":'easy-to-hard', 
+        "CDR-v2_CustomAnt":'hard-to-easy',
     }
 
     # Create figure dir
@@ -74,8 +79,8 @@ def main():
         # smoothing
         for i in range(1,6):
             # default is (a[i], 51, 3)
-            # 21 3/ 31 3
-            a[i] = signal.savgol_filter(a[i],41,3)
+            # 21 3/ 31 3/ 41 3
+            a[i] = signal.savgol_filter(a[i],21,3)
         
         
         col = np.linspace(0.0,1.0,100)
