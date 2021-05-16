@@ -189,7 +189,7 @@ def main():
             load_dir = "./trained_agent_dir/" + agent +"/"
 
         # seedごとに平均報酬を獲得する ,range(1,6)
-        for seed in range(1,6):
+        for seed in range(1,2):
             
             if "range09-16million" in agentName and seed >= 4:
                 continue
@@ -217,7 +217,7 @@ def main():
             # kを0から1まで，0.01刻みで変化させる
             for k in tqdm(range(1)):
                 # 故障が起きる環境でのrewardを求めるループ(100)
-                for episode in range(1):
+                for episode in range(3):
                     # iteration of time steps, default is 1000 time steps
                     for i in range(1000):
                         # predict phase
