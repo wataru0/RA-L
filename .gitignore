@@ -11,3 +11,6 @@ tensorboard_log/
 Ablation/
 test.py
 MUJOCO_LOG.txt
+__pycache__/
+algorithms/__pycache__/
+
