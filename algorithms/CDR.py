@@ -39,12 +39,13 @@ class CDREnv(gym.Wrapper):
         self.crippled_leg = 0
         self.cripple_mask = np.ones(self.action_space.shape)
         self._init_geom_rgba = self.model.geom_rgba.copy()
-        self.joint_range = 1
+        self.joint_range = 1.0
         self.num_step = 0
         self.total_reward = 0
         # rewardを保存しておくバッファー
         self.buffer = [] 
-        self.buffer_size = 100
+        # 今まで（2021/05/16）100だった
+        self.buffer_size = 1000
         # 前回の分布での報酬の平均値を格納しておく変数
         self.before_average = 0 
         self.joint_num = 0
@@ -85,17 +86,17 @@ class CDREnv(gym.Wrapper):
                 if self.version == 1:
                     if self.joint_min > 0.0:
                         self.joint_min -= self.update_k_step_size
-                        # kのminとmaxの差が0.1以上になったらmaxも減らす
-                        if abs(self.joint_max - self.joint_min) >= 0.1:
-                            self.joint_max -= self.update_k_step_size
+                        # kのminとmaxの差が0.1以上になったらmaxも減らす (upperfixではコメントアウト)
+                        # if abs(self.joint_max - self.joint_min) >= 0.1:
+                        #     self.joint_max -= self.update_k_step_size
 
                 # Curriculum2-v2
                 if self.version == 2:
                     if self.joint_max <= 1.0:
                         self.joint_max += self.update_k_step_size
-                        # kのminとmaxの差が0.1以上になったらminも上昇
-                        if abs(self.joint_max - self.joint_min) >= 0.1:
-                            self.joint_min += self.update_k_step_size
+                        # kのminとmaxの差が0.1以上になったらminも上昇 (lowerfixではコメントアウト)
+                        # if abs(self.joint_max - self.joint_min) >= 0.1:
+                        #     self.joint_min += self.update_k_step_size
 
             # else: #能力アップしていなかったら
             #     # 下げなくていいかも，k＝０から上昇させるときは，
@@ -139,7 +140,7 @@ class CDREnv(gym.Wrapper):
                     actuator_map[index][joint_mask[1]] += 1
                 else:
                     action[joint_mask[0]]=henkan(action[joint_mask[0]], -1, 1, -self.joint_range, self.joint_range)
-                    action[joint_mask[1]]=henkan(action[joint_mask[1]],- 1, 1, -self.joint_range, self.joint_range)
+                    action[joint_mask[1]]=henkan(action[joint_mask[1]], -1, 1, -self.joint_range, self.joint_range)
                     actuator_map[index][joint_mask[0]] += 1
                     actuator_map[index][joint_mask[1]] += 1
             #ーーーー action = self.cripple_mask * action
