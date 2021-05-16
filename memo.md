@@ -387,3 +387,4 @@ config = {
 self.buffer_size = 1000 に変更
 
 ## CDR-v1_CustomAnt_bfsize1000_20m
+## CDR-v1_CustomAnt_bfsize500_20m
