@@ -39,15 +39,8 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         state = self.state_vector()
 
         # 終了条件の記述
-        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
 
-        # bodyの向きをデカルト座標，クォータニオンで表現したもの=====
-        # 転倒を体の向きで検知したいが，現状よくわからない
-        # print("---")
-        # print(self.data.body_xmat)
-        # print(self.data.body_xquat)
-        
-        # print(self.data.get_body_xquat("torso"))
         res = np.zeros(4)
         mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
         if res[0] < 0:
@@ -56,24 +49,13 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         torso_vec = np.zeros(3)
         mujoco_py.functions.mju_rotVecQuat(torso_vec, self.vec, quat_after)
         # Terminate the episode when the agent falls over.
-        if torso_vec[2] < -0.8:
-            notdone = False
+        # if torso_vec[2] < -0.8:
+        #     notdone = False
 
         self.quat_current = res
-        # ==================================================
 
-        
-        # これでtorsoの位置取得できる（x,y,z）----------------
-        # print(self.data.body_xpos)
-        # print(self.get_body_com('torso'))
-        
-        # print(body_posbefore, body_posafter)
-        # print(np.linalg.norm(body_posafter - body_posbefore))
-        dist = np.linalg.norm(body_posafter - body_posbefore)
-        # print(dist)
-        # if dist < 0.0:
-        #     notdone = False
-        # ------------------------------------------------
+        # 終了条件
+        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
 
         done = not notdone
         ob = self._get_obs()
