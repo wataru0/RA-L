@@ -44,8 +44,8 @@ class CDREnv(gym.Wrapper):
         self.total_reward = 0
         # rewardを保存しておくバッファー
         self.buffer = [] 
-        # 今まで（2021/05/16）100だった
-        self.buffer_size = 1000
+        # 今まで（2021/05/16）100だった,1000も試した．その次500
+        self.buffer_size = 500
         # 前回の分布での報酬の平均値を格納しておく変数
         self.before_average = 0 
         self.joint_num = 0
