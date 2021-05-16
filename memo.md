@@ -349,3 +349,19 @@ config = {
     # 'buffer_size':100,
     # 'update_k_step_size':0.01 # k のアップデートサイズ
 }
+
+## CDR-v1_normalAnt
+config = {
+    # 'env':'CustomAnt-v0',
+    'env':'Ant-v2',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00020,
+    # 'joint_min_range':0,
+    # 'joint_max_range':1,
+    # 'buffer_size':100,
+    # 'update_k_step_size':0.01 # k のアップデートサイズ
+}
