@@ -10,7 +10,8 @@ monitor_log/
 tensorboard_log/
 Ablation/
 test.py
-MUJOCO_LOG.txt
+MUJOCO_LOG.TXT
 __pycache__/
 algorithms/__pycache__/
+output/
 
