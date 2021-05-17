@@ -31,7 +31,7 @@ def henkan(val, start1, stop1, start2, stop2):
 class CDREnv(gym.Wrapper):
     # クラス変数
 
-    def __init__(self, env, value=None, version=2):
+    def __init__(self, env, value=None, version=2, bound_fix=False):
         super().__init__(env) # 親クラスの呼び出しが必要
         # 以下インスタンス変数
         self.value = value 
@@ -62,7 +62,10 @@ class CDREnv(gym.Wrapper):
             self.joint_max = 1.0 
         elif version == 2:
             self.joint_min = 0.0 
-            self.joint_max = 0.0 
+            self.joint_max = 0.0
+
+        # Trueの時，v1の時は上限固定，v2の時は下限固定する
+        self.bound_fix = bound_fix
 
     def reset(self, **kwargs): 
         # **kwargs:任意個数の引数を辞書として受け取る
@@ -87,16 +90,18 @@ class CDREnv(gym.Wrapper):
                     if self.joint_min > 0.0:
                         self.joint_min -= self.update_k_step_size
                         # kのminとmaxの差が0.1以上になったらmaxも減らす (upperfixではコメントアウト)
-                        # if abs(self.joint_max - self.joint_min) >= 0.1:
-                        #     self.joint_max -= self.update_k_step_size
+                        if self.bound_fix is not True:
+                            if abs(self.joint_max - self.joint_min) >= 0.1:
+                                self.joint_max -= self.update_k_step_size
 
                 # Curriculum2-v2
                 if self.version == 2:
                     if self.joint_max <= 1.0:
                         self.joint_max += self.update_k_step_size
                         # kのminとmaxの差が0.1以上になったらminも上昇 (lowerfixではコメントアウト)
-                        # if abs(self.joint_max - self.joint_min) >= 0.1:
-                        #     self.joint_min += self.update_k_step_size
+                        if self.bound_fix is not True:
+                            if abs(self.joint_max - self.joint_min) >= 0.1:
+                                self.joint_min += self.update_k_step_size
 
             # else: #能力アップしていなかったら
             #     # 下げなくていいかも，k＝０から上昇させるときは，
