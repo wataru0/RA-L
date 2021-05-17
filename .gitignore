@@ -14,4 +14,5 @@ MUJOCO_LOG.TXT
 __pycache__/
 algorithms/__pycache__/
 output/
-
+eval_generalization_updateRfunc.py
+eval_generalization_updateRfunc.sh
