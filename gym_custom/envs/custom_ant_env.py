@@ -54,7 +54,7 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
 
         self.quat_current = res
 
-        # 終了条件
+        # 終了条件（転倒したら終了するという条件を追加）
         notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
 
         done = not notdone
