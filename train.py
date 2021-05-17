@@ -49,7 +49,7 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     # 'env':'AblationAnt-v0', # for ablation study
-    'total_timestep':int(20e6), # PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'total_timestep':int(20e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
@@ -62,6 +62,7 @@ def arg_parser():
     parser.add_argument('--seed', help='seed for saigensei', type=int, default=1)
     parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2'], required=True)
     parser.add_argument('--ablation', help='Do you want to do ablation study? hahaha.', default=False, action='store_true')
+    parser.add_argument('--bound_fix', help='If you want to fix lower/upper bound in train, use', default=False, action='store_true')
 
     return parser.parse_args()
 
@@ -110,12 +111,15 @@ def main():
     if args.algo == "UDR":
         print("Now, we are training the agent using the UDR method!")
         env = UDR.UDREnv(env)
+
     elif args.algo == "CDR-v1":
         print("Now, we are training the agent using the CDR-v1 method!")
-        env = CDR.CDREnv(env, version=1)
+        env = CDR.CDREnv(env, version=1, bound_fix=args.bound_fix)
+        
     elif args.algo == "CDR-v2":
         print("Now, we are training the agent using the CDR-v2 method!")
-        env = CDR.CDREnv(env, version=2)
+        env = CDR.CDREnv(env, version=2, bound_fix=args.bound_fix)
+
     else:
         print("Now, we are training the agent using the baseline method!")
     env = Monitor(env, log_dir, allow_early_resets=True) 

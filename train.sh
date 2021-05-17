@@ -33,17 +33,48 @@
 # python train.py --savedir=CDR-v2_CustomAnt --seed=4 --algo=CDR-v2
 # python train.py --savedir=CDR-v2_CustomAnt --seed=5 --algo=CDR-v2
 
-python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=1 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=2 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=3 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=4 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=5 --algo=CDR-v1
+# upper,lower fixのトレーニング
+# python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=1 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=2 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=3 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=4 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt_upperfix --seed=5 --algo=CDR-v1
 
-python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=1 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=2 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=3 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=4 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=5 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=1 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=2 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=3 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=4 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=5 --algo=CDR-v2
+
+# 2021/05/17ーーーーーーーーーーーーーーー
+# upper, lower fixしないトレーニング
+python train.py --savedir=CDR-v1_CustomAnt_bf1000 --seed=1 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt_bf1000 --seed=2 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt_bf1000 --seed=3 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt_bf1000 --seed=4 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt_bf1000 --seed=5 --algo=CDR-v1
+
+python train.py --savedir=CDR-v2_CustomAnt_bf1000 --seed=1 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt_bf1000 --seed=2 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt_bf1000 --seed=3 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt_bf1000 --seed=4 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt_bf1000 --seed=5 --algo=CDR-v2
+
+# upper,lower fixのトレーニング
+python train.py --savedir=CDR-v1_CustomAnt_upperfix_bf1000 --seed=1 --algo=CDR-v1 --bound_fix
+python train.py --savedir=CDR-v1_CustomAnt_upperfix_bf1000 --seed=2 --algo=CDR-v1 --bound_fix
+python train.py --savedir=CDR-v1_CustomAnt_upperfix_bf1000 --seed=3 --algo=CDR-v1 --bound_fix
+python train.py --savedir=CDR-v1_CustomAnt_upperfix_bf1000 --seed=4 --algo=CDR-v1 --bound_fix
+python train.py --savedir=CDR-v1_CustomAnt_upperfix_bf1000 --seed=5 --algo=CDR-v1 --bound_fix
+
+python train.py --savedir=CDR-v2_CustomAnt_lowerfix_bf1000 --seed=1 --algo=CDR-v2 --bound_fix
+python train.py --savedir=CDR-v2_CustomAnt_lowerfix_bf1000 --seed=2 --algo=CDR-v2 --bound_fix
+python train.py --savedir=CDR-v2_CustomAnt_lowerfix_bf1000 --seed=3 --algo=CDR-v2 --bound_fix
+python train.py --savedir=CDR-v2_CustomAnt_lowerfix_bf1000 --seed=4 --algo=CDR-v2 --bound_fix
+python train.py --savedir=CDR-v2_CustomAnt_lowerfix_bf1000 --seed=5 --algo=CDR-v2 --bound_fix
+
+
+
 
 # 動作確認--------------------------
 # python train.py --savedir=Baseline_CustomAnt --seed=1 --algo=Baseline --ablation
@@ -53,3 +84,5 @@ python train.py --savedir=CDR-v2_CustomAnt_lowerfix --seed=5 --algo=CDR-v2
 # python train.py --savedir=CDR-v1_CustomAnt --seed=1 --algo=CDR-v1 --ablation
 
 # python train.py --savedir=CDR-v2_CustomAnt --seed=1 --algo=CDR-v2 --ablation
+# python train.py --savedir=CDR-v1_notFix --seed=1 --algo=CDR-v1 --ablation
+# python train.py --savedir=CDR-v1_Fix --seed=1 --algo=CDR-v1 --ablation --bound_fix
