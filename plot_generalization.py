@@ -38,7 +38,7 @@ def main():
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3"]
     # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
-    filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt", "CDR-v2_CustomAnt"]
+    filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -51,8 +51,8 @@ def main():
         "CDR-v2":"hard-to-easy",
         "Baseline_CustomAnt":'Baseline', 
         "UDR_CustomAnt":'UDR', 
-        "CDR-v1_CustomAnt":'easy-to-hard', 
-        "CDR-v2_CustomAnt":'hard-to-easy',
+        "CDR-v1_CustomAnt_bf1000":'easy-to-hard', 
+        "CDR-v2_CustomAnt_bf1000":'hard-to-easy',
     }
 
     # Create figure dir
