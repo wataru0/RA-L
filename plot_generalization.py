@@ -38,7 +38,8 @@ def main():
     # filename = ["Baseline-16million-v3", "random-16million", "Curriculum-v4-16million"]
     # filename = ["Baseline-16million-v3"]
     # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
-    filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000"]
+    # filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
+    filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -53,6 +54,8 @@ def main():
         "UDR_CustomAnt":'UDR', 
         "CDR-v1_CustomAnt_bf1000":'easy-to-hard', 
         "CDR-v2_CustomAnt_bf1000":'hard-to-easy',
+        "CDR-v1_CustomAnt_upperfix_bf1000":"easy-to-hard-fix",
+        "CDR-v2_CustomAnt_lowerfix_bf1000":"hard-to-easy-fix",
     }
 
     # Create figure dir
