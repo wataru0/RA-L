@@ -49,7 +49,7 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     # 'env':'AblationAnt-v0', # for ablation study
-    'total_timestep':int(20e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'total_timestep':int(10e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
@@ -96,14 +96,22 @@ def main():
     args = arg_parser()
 
     # Set trained agent dir and tensorbord dir
-    save_dir = "./trained_agent_dir/"+ args.savedir + "/"
-    tensorboard_log_dir = "./tensorboard_log/"
+    if args.ablation is not True:
+        save_dir = "./trained_agent_dir/"+ args.savedir + "/"
+        # tensorboard_log_dir = "./tensorboard_log/"
+
+        # Create dir
+        os.makedirs(save_dir,exist_ok=True)
+
+    # HDDに保存する
+    home = str(os.environ['HOME'])
+    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log/"
     
     if args.ablation:
-        tensorboard_log_dir = "./Ablation/tensorboard_log/"
+        # tensorboard_log_dir = "./Ablation/tensorboard_log/"
+        tensorboard_log_dir = home + "/HDD/RA-L/Ablation_tensorboard_log/"
         
     # Create dir
-    os.makedirs(save_dir,exist_ok=True)
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
     # Create gym environment
@@ -132,7 +140,8 @@ def main():
     model.learn(total_timesteps=config['total_timestep'], callback=callback, tb_log_name=args.savedir)
 
     # Save the model(agent)
-    model.save(save_dir + "trainedAnt" + "-seed"+ str(args.seed))
+    if args.ablation is not True:
+        model.save(save_dir + "trainedAnt" + "-seed"+ str(args.seed))
 
     # CDR用の可視化処理
     if "CDR" in args.algo:
