@@ -19,7 +19,10 @@
 # python eval_generalization_customEnv.py --agent=CDR-v2 --n_episodes=10
 
 # 新しくトレーニングしたもの（従来の終了条件に転倒したら終了するを追加して訓練したもの）
-python eval_generalization_customEnv.py --agent=Baseline_CustomAnt --n_episodes=10
-python eval_generalization_customEnv.py --agent=UDR_CustomAnt --n_episodes=10
-python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt --n_episodes=10
-python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt --n_episodes=10
+# python eval_generalization_customEnv.py --agent=Baseline_CustomAnt --n_episodes=10
+# python eval_generalization_customEnv.py --agent=UDR_CustomAnt --n_episodes=10
+# python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt_bf1000 --n_episodes=10
+# python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt_bf1000 --n_episodes=10
+
+python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt_upperfix_bf1000 --n_episodes=10
+python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt_lowerfix_bf1000 --n_episodes=10

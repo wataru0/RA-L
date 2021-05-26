@@ -173,15 +173,6 @@ def main():
     for agent in agentName:
         brokenSeedAveReward = []
 
-        # Old-----------------------------------------------
-        # if "Curriculum" in agent:
-        #     # ロードディレクトリの指定
-        #     load_dir = "./ISIS2020/trained_Curriculum/" + agent +"/"
-        # else:
-        #     # ロードディレクトリの指定
-        #     load_dir = "./ISIS2020/trained_agent_dir/" + agent +"/"
-
-        # New-----------------------------------------------
         load_dir = "./trained_agent_dir/" + agent + "/"
 
         # seedごとに平均報酬を獲得する ,range(1,6)
