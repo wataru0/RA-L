@@ -217,7 +217,7 @@ def main():
             # kを0から1まで，0.01刻みで変化させる
             for k in tqdm(range(1)):
                 # 故障が起きる環境でのrewardを求めるループ(100)
-                for episode in range(3):
+                for episode in range(6):
                     # iteration of time steps, default is 1000 time steps
                     for i in range(1000):
                         # predict phase
