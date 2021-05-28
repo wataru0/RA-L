@@ -18,3 +18,4 @@ eval_generalization_updateRfunc.py
 eval_generalization_updateRfunc.sh
 train_ablation.py
 train_ablation.sh
+train2.sh
