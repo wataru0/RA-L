@@ -49,7 +49,7 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     # 'env':'AblationAnt-v0', # for ablation study
-    'total_timestep':int(10e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'total_timestep':int(16e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
@@ -98,7 +98,6 @@ def main():
     # Set trained agent dir and tensorbord dir
     if args.ablation is not True:
         save_dir = "./trained_agent_dir/"+ args.savedir + "/"
-        # tensorboard_log_dir = "./tensorboard_log/"
 
         # Create dir
         os.makedirs(save_dir,exist_ok=True)
