@@ -35,9 +35,6 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             0.5 * 1e-3 * np.sum(np.square(np.clip(self.sim.data.cfrc_ext, -1, 1)))
         )
 
-        # defaultの終了条件
-        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
-
         res = np.zeros(4)
         mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
         if res[0] < 0:
@@ -48,12 +45,6 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         # Terminate the episode when the agent falls over.
         # if torso_vec[2] < -0.8:
         #     notdone = False
-
-        self.quat_current = res
-
-        # 終了条件（転倒したら終了するという条件を追加）
-        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
-
 
         # 転倒でエピソードを終了すると学習が思うように上手くいかないことから，
         # 転倒している状態でエピソードを消費している状況に意味がある可能性があるので，
@@ -66,10 +57,16 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
             survive_reward = 0.0
 
         reward = forward_reward - ctrl_cost - contact_cost + survive_reward
+
         state = self.state_vector()
+        # defaultの終了条件
+        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+        # 終了条件（転倒したら終了するという条件を追加）
+        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
 
         done = not notdone
         ob = self._get_obs()
+        self.quat_current = res
         return (
             ob,
             reward,
