@@ -34,12 +34,9 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         contact_cost = (
             0.5 * 1e-3 * np.sum(np.square(np.clip(self.sim.data.cfrc_ext, -1, 1)))
         )
-        survive_reward = 1.0
-        reward = forward_reward - ctrl_cost - contact_cost + survive_reward
-        state = self.state_vector()
 
-        # 終了条件の記述
-        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
+        # defaultの終了条件
+        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0
 
         res = np.zeros(4)
         mujoco_py.functions.mju_mulQuat(res, self.quat_current, quat_after)
@@ -55,7 +52,21 @@ class CustomAntEnv(mujoco_env.MujocoEnv, utils.EzPickle):
         self.quat_current = res
 
         # 終了条件（転倒したら終了するという条件を追加）
-        notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
+        # notdone = np.isfinite(state).all() and state[2] >= 0.2 and state[2] <= 1.0 and torso_vec[2] >= -0.8
+
+
+        # 転倒でエピソードを終了すると学習が思うように上手くいかないことから，
+        # 転倒している状態でエピソードを消費している状況に意味がある可能性があるので，
+        # 転倒したらsurvive rewardを　0 or 負の値　にすることで，転倒状態のペナルティをより強調させる．（意図）
+        survive_reward = 1.0
+
+        # 転倒した場合
+        if torso_vec[2] < -0.8:
+            # survive rewardを 0 or 負の値にする
+            survive_reward = 0.0
+
+        reward = forward_reward - ctrl_cost - contact_cost + survive_reward
+        state = self.state_vector()
 
         done = not notdone
         ob = self._get_obs()
