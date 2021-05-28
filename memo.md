@@ -423,3 +423,28 @@ config = {
     'learning_rate':0.00020,
 }
 と，buffer sizeを500にした．
+こいつら途中で止めた．
+
+---
+
+2021/05/28
+これからは，「転倒したらエピソード終了」ではなく，転倒した場合，survive reward を0にする or survive rewardを負の値にするという環境で訓練を行ってみる．
+
+## Baseline_CustomAnt-ReduceSRto0IfFallingDown
+## UDR_CustomAnt-ReduceSRto0IfFallingDown
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100
+```
+config = {
+    'env':'CustomAnt-v0',
+    # 'env':'Ant-v2',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(16e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00020,
+}
+```
