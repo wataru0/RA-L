@@ -16,6 +16,7 @@ import pandas as pd
 import math
 import datetime as dt
 from  tqdm import tqdm
+
 # 自作のgym環境を使うためにimport
 import gym_custom
 
@@ -134,7 +135,8 @@ def main():
     args = arg_parser()
 
     # Create log dir
-    tensorboard_log_dir = "./tensorboard_log/"
+    home = str(os.environ['HOME'])
+    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log/"
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
     # Create result tmp dir
@@ -179,7 +181,7 @@ def main():
         for seed in range(1,6):
 
             # PPO2modelの生成(トレーニングを行うエージェントの作成)
-            trainedAnt = PPO2(MlpPolicy,env1,verbose=1,tensorboard_log=tensorboard_log_dir)
+            trainedAnt = PPO2(MlpPolicy, env1, verbose=1, tensorboard_log=tensorboard_log_dir)
 
             # 保存したモデル（学習済みモデル）のload ：zipファイルのファイル名のみとパスを指定,seedごとに
             trainedAnt = PPO2.load(load_dir + "trainedAnt" + "-seed" + str(seed)) 
