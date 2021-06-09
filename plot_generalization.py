@@ -40,7 +40,9 @@ def main():
     # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
     # filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
     # filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
-    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100"]
+
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100"]
+    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -63,6 +65,7 @@ def main():
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100":"CDR-v2", 
         "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100":"CDR-v1-fix", 
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100":"CDR-v2-fix",
+        "Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2":"Baseline",
     }
 
     # Create figure dir
@@ -90,7 +93,7 @@ def main():
         for i in range(1,6):
             # default is (a[i], 51, 3)
             # 21 3/ 31 3/ 41 3
-            a[i] = signal.savgol_filter(a[i],21,3)
+            a[i] = signal.savgol_filter(a[i],31,3)
         
         
         col = np.linspace(0.0,1.0,100)
