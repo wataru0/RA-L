@@ -462,3 +462,10 @@ config = {
     'learning_rate':0.00022,
 }
 ```
+
+## UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015
+kのランダム化範囲を0.0~1.5に変更したもの
