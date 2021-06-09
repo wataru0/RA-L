@@ -49,7 +49,8 @@ class UDREnv(gym.Wrapper):
         self.crippled_leg = value if value is not None else np.random.randint(0,5) # (0,4)だと0から4個なので0,1,2,3までしかでない！！
         
         # joint_min_range~joint_max_rangeまでの乱数を生成。これがaction値のrangeになる
-        self.joint_range = random.uniform(0.0, 1.0)
+        # ランダム化範囲を[0.0, 1.0] -> [0.0, 1.5]に変更
+        self.joint_range = random.uniform(0.0, 1.5)
 
         # Pick which actuators to disable
         # joint rangeを変更する足をマスクで表現、99を代入しておく
