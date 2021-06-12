@@ -133,11 +133,11 @@
 
 # 2021/06/09
 # kのランダム化範囲を0.0~1.5に変更したもの
-python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=1 --algo=UDR
-python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=2 --algo=UDR
-python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=3 --algo=UDR
-python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=4 --algo=UDR
-python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=5 --algo=UDR
+# python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=1 --algo=UDR
+# python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=2 --algo=UDR
+# python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=3 --algo=UDR
+# python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=4 --algo=UDR
+# python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=5 --algo=UDR
 
 # 提案手法
 # upper, lower fixしないトレーニング
