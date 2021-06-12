@@ -148,15 +148,15 @@ class CDREnv(gym.Wrapper):
                 self.joint_num = 2 # 前のやり方
                 if self.joint_num == 0:
                     action[joint_mask[0]]=henkan(action[joint_mask[0]], -1, 1, -self.joint_range, self.joint_range)
-                    actuator_map[index][joint_mask[0]] += 1
+                    # actuator_map[index][joint_mask[0]] += 1
                 elif self.joint_num == 1:
                     action[joint_mask[1]]=henkan(action[joint_mask[1]], -1, 1, -self.joint_range, self.joint_range)
-                    actuator_map[index][joint_mask[1]] += 1
+                    # actuator_map[index][joint_mask[1]] += 1
                 else:
                     action[joint_mask[0]]=henkan(action[joint_mask[0]], -1, 1, -self.joint_range, self.joint_range)
                     action[joint_mask[1]]=henkan(action[joint_mask[1]], -1, 1, -self.joint_range, self.joint_range)
-                    actuator_map[index][joint_mask[0]] += 1
-                    actuator_map[index][joint_mask[1]] += 1
+                    # actuator_map[index][joint_mask[0]] += 1
+                    # actuator_map[index][joint_mask[1]] += 1
             #ーーーー action = self.cripple_mask * action
             #print(action) # joint_maskの要素のaction値をクリップ(指定した値の間の値に変換)することができた
 
@@ -170,11 +170,11 @@ class CDREnv(gym.Wrapper):
         # グラフ作成用
         joint_actuator_range_max.append(self.joint_max)
         joint_actuator_range_min.append(self.joint_min)
-        for i,a in enumerate(action):
-            index = int(abs(a)*10)
-            if index == 10:
-                index = 9
-            actuator_power_map[index][i] += 1
+        # for i,a in enumerate(action):
+        #     index = int(abs(a)*10)
+        #     if index == 10:
+        #         index = 9
+        #     actuator_power_map[index][i] += 1
 
         self.cReward += reward
         
@@ -236,11 +236,13 @@ class CDREnv(gym.Wrapper):
         os.makedirs(figdir, exist_ok=True)
         
         plt.figure()
-        fig, (ax1,ax2,ax3,ax4) = plt.subplots(1,4,figsize=(45,10))
-        sns.heatmap(actuator_map,ax=ax1)
-        ax1.set(xlabel='joint',ylabel='k')
-        sns.heatmap(actuator_power_map,ax=ax2)
-        ax2.set(xlabel='joint',ylabel='actuator force')
+        # fig, (ax1,ax2,ax3,ax4) = plt.subplots(1,4,figsize=(45,10))
+        # sns.heatmap(actuator_map,ax=ax1)
+        # ax1.set(xlabel='joint',ylabel='k')
+        # sns.heatmap(actuator_power_map,ax=ax2)
+        # ax2.set(xlabel='joint',ylabel='actuator force')
+
+        fig, (ax3,ax4) = plt.subplots(1,2,figsize=(25,10))
         ax3.plot(joint_actuator_range_max)
         ax3.set(xlabel='timesteps',ylabel='k_max')
         ax4.plot(joint_actuator_range_min)
