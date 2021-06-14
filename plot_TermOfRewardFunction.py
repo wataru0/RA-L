@@ -39,7 +39,8 @@ def main():
     # filename = ["Baseline-16million-v3"]
     # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
     # filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
-    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100"]
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100"]
+    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -62,6 +63,10 @@ def main():
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100":"CDR-v2", 
         "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100":"CDR-v1-fix", 
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100":"CDR-v2-fix",
+        "Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2":"Baseline",
+        "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015":"UDR", 
+        "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v1", 
+        "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v2",
     }
 
     # Create figure dir
