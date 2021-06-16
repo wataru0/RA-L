@@ -90,8 +90,11 @@ def main():
             # a[seed] = np.load("./data_updateRfunc/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
 
             # 自作のgym環境での評価が入っているディレクトリ
-            # a[seed] = np.load("./data_customEnv/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+            # ランダムに脚一本が故障する環境での評価が入っているディレクトリ
             a[seed] = np.load("./Data/CustomAnt/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
+
+            # ランダムに関節2個壊れる環境での評価が入っているディレクトリ
+            # a[seed] = np.load("./Data/CustomAnt_2JointBroken/" + file + "/" + file + "_rewardForEachK_seed=" +  str(seed) + ".npy")
 
         # smoothing
         for i in range(1,6):
