@@ -175,7 +175,58 @@ class Random2JointBrokenEnv(gym.Wrapper):
         if self.crippled_leg1 == 3 or self.crippled_leg2 == 3:
             self.cripple_mask[0] = 99
             self.cripple_mask[1] = 99
-        
+
+# まだ途中
+class Random2LegBrokenEnv(gym.Wrapper):
+    def __init__(self,env,value=None):
+        super().__init__(env) 
+        self.value = value 
+        self.crippled_leg1 = 0
+        self.crippled_leg2 = 0
+        self.cripple_mask = np.ones(self.action_space.shape)
+        self._init_geom_rgba = self.model.geom_rgba.copy()
+        self.joint_range = 1
+
+    def reset(self,**kwargs): 
+        self.reset_task()
+        return self.env.reset(**kwargs)
+
+    def step(self, action, k):
+        if self.cripple_mask is not None:
+            joint_mask = [i for i,x in enumerate(self.cripple_mask) if x == 99] 
+            if len(joint_mask) == 1:
+                joint_mask.append(joint_mask[0])
+            # print(joint_mask) # [4,5]のように表示される, [2, 3, 4, 5]
+
+            if joint_mask != []:
+                for i in joint_mask:
+                    action[i] = action[i] * (float(k)/100)
+
+        obs,reward,done,info = self.env.step(action)
+
+        return obs,reward,done,info
+
+    def reset_task(self,value=None):
+        # randomly cripple leg (4 is nothing)
+        self.crippled_leg1 = value if value is not None else np.random.randint(0,4)
+        self.crippled_leg2 = value if value is not None else np.random.randint(0,4)
+
+        # Pick which actuators to disable
+        # joint rangeを変更する脚2本をマスクで表現、99を代入しておく
+        # 壊す脚を選択
+        self.cripple_mask = np.ones(self.action_space.shape)
+        if self.crippled_leg1 == 0 or self.crippled_leg2 == 0:
+            self.cripple_mask[2] = 99
+            self.cripple_mask[3] = 99
+        if self.crippled_leg1 == 1 or self.crippled_leg2 == 1:
+            self.cripple_mask[4] = 99
+            self.cripple_mask[5] = 99
+        if self.crippled_leg1 == 2 or self.crippled_leg2 == 2:
+            self.cripple_mask[6] = 99
+            self.cripple_mask[7] = 99
+        if self.crippled_leg1 == 3 or self.crippled_leg2 == 3:
+            self.cripple_mask[0] = 99
+            self.cripple_mask[1] = 99
 
 def save_reward_map(map, save_path, agent_name, save_name, n_episodes):
     for seed in range(1, 6):
@@ -197,15 +248,14 @@ def main():
     os.makedirs(figdir,exist_ok=True)
 
     # Create ndarray save dir
-    # nd_dir = "./data_customEnv/" + str(args.agent) + "/"
-    # nd_dir = "./Data/CustomAnt/" + str(args.agent) + "/"
-    nd_dir = "./Data/CustomAnt_2JointBroken/" + str(args.agent) + "/"
+    nd_dir = "./Data/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
+    # nd_dir = "./Data/CustomAnt_2JointBroken/" + str(args.agent) + "/" # ランダムな関節2個が故障する環境での評価を格納するディレクトリ
     os.makedirs(nd_dir, exist_ok=True)
 
     # Create and wrap the environment 
     env1 = gym.make(config['env'])
-    # broken_env = ChangeJointRangeEnv(env1)
-    broken_env = Random2JointBrokenEnv(env1)
+    broken_env = ChangeJointRangeEnv(env1) # 脚一本が故障する環境
+    # broken_env = Random2JointBrokenEnv(env1) # 関節2個が故障する環境
 
     if args.video:
         broken_env = wrappers.Monitor(broken_env,'./videos/' + args.loaddir + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
