@@ -3,6 +3,10 @@
 # 提案手法
 # 今まで一つのファイルでトレーニングを回していたのをクラスごとにしっかり分けようというもの
 # train.pyを実行する際に，gym環境をラッパーすることで実装する
+
+# トルクのランダム化範囲について先行研究
+# https://arxiv.org/pdf/2010.04304.pdf
+
 import os
 import gym
 import numpy as np
