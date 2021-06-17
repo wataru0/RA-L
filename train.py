@@ -49,7 +49,7 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     # 'env':'AblationAnt-v0', # for ablation study
-    'total_timestep':int(16e3), # default:16e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'total_timestep':int(16e6), # default:16e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
