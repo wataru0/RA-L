@@ -28,7 +28,7 @@ from stable_baselines import PPO2
 from stable_baselines.common.vec_env import DummyVecEnv
 
 import gym_custom
-from algorithms import CDR, UDR
+from algorithms import CDR, UDR, LinearCurriculumLearning
 
 best_mean_reward = -np.inf # 平均報酬
 n_updates = 0 # 更新数
@@ -49,18 +49,19 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     # 'env':'AblationAnt-v0', # for ablation study
-    'total_timestep':int(16e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'total_timestep':int(16e3), # default:16e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
     'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
     'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
     'noptepochs':4, # 収集した経験を勾配降下にかける回数
     'learning_rate':0.00022, # 0.00020
+    'n_level':11, # Linear Curriculum Learningにおいてのkの更新回数
 }
 
 def arg_parser():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--savedir', help='saving name dir for trained mode!!!', type=str, default='Ant'+ datetime.datetime.now().isoformat())
     parser.add_argument('--seed', help='seed for saigensei', type=int, default=1)
-    parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2'], required=True)
+    parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2', 'LCL-v1', 'LCL-v2'], required=True)
     parser.add_argument('--ablation', help='Do you want to do ablation study? hahaha.', default=False, action='store_true')
     parser.add_argument('--bound_fix', help='If you want to fix lower/upper bound in train, use', default=False, action='store_true')
 
@@ -126,6 +127,12 @@ def main():
     elif args.algo == "CDR-v2":
         print("Now, we are training the agent using the CDR-v2 method!")
         env = CDR.CDREnv(env, version=2, bound_fix=args.bound_fix)
+    
+    elif args.algo == "LCL-v1":
+        env = LinearCurriculumLearning.LCLEnv(env, version=1, bound_fix=args.bound_fix, total_timestep=config['total_timestep'], n_level=config['n_level'])
+    
+    elif args.algo == "LCL-v2":
+        env = LinearCurriculumLearning.LCLEnv(env, version=2, bound_fix=args.bound_fix, total_timestep=config['total_timestep'], n_level=config['n_level'])
 
     else:
         print("Now, we are training the agent using the baseline method!")
@@ -146,6 +153,10 @@ def main():
     if "CDR" in args.algo:
         CDR.CDREnv.visualize_fig(env, save_path=str(args.savedir) + '-seed' + str(args.seed))
         CDR.CDREnv.output_csv(env, save_path=str(args.savedir), seed=args.seed)
+
+    if "LCL" in args.algo:
+        LinearCurriculumLearning.LCLEnv.visualize_fig(env, save_path=str(args.savedir) + '-seed' + str(args.seed))
+        LinearCurriculumLearning.LCLEnv.output_csv(env, save_path=str(args.savedir), seed=args.seed)
 
 if __name__ == '__main__':
     main()

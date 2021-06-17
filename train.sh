@@ -141,28 +141,53 @@
 
 # 提案手法
 # upper, lower fixしないトレーニング
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=1 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=2 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=3 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=4 --algo=CDR-v1
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=5 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=1 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=2 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=3 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=4 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=5 --algo=CDR-v1
 
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=1 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=2 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=3 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=4 --algo=CDR-v2
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=5 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=1 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=2 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=3 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=4 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --seed=5 --algo=CDR-v2
 
-# upper,lower fixのトレーニング
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=1 --algo=CDR-v1 --bound_fix
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=2 --algo=CDR-v1 --bound_fix
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=3 --algo=CDR-v1 --bound_fix
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=4 --algo=CDR-v1 --bound_fix
-python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=5 --algo=CDR-v1 --bound_fix
+# # upper,lower fixのトレーニング
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=1 --algo=CDR-v1 --bound_fix
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=2 --algo=CDR-v1 --bound_fix
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=3 --algo=CDR-v1 --bound_fix
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=4 --algo=CDR-v1 --bound_fix
+# python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --seed=5 --algo=CDR-v1 --bound_fix
 
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=1 --algo=CDR-v2 --bound_fix
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=2 --algo=CDR-v2 --bound_fix
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=3 --algo=CDR-v2 --bound_fix
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=4 --algo=CDR-v2 --bound_fix
-python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=5 --algo=CDR-v2 --bound_fix
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=1 --algo=CDR-v2 --bound_fix
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=2 --algo=CDR-v2 --bound_fix
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=3 --algo=CDR-v2 --bound_fix
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=4 --algo=CDR-v2 --bound_fix
+# python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --seed=5 --algo=CDR-v2 --bound_fix
 
+# 2021/06/17
+# Linear Curriculum Learningのトレーニング
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=1 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=2 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=3 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=4 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=5 --algo=LCL-v1
+
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=1 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=2 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=3 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=4 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=5 --algo=LCL-v2
+
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --seed=1 --algo=LCL-v1 --bound_fix
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --seed=2 --algo=LCL-v1 --bound_fix
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --seed=3 --algo=LCL-v1 --bound_fix
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --seed=4 --algo=LCL-v1 --bound_fix
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --seed=5 --algo=LCL-v1 --bound_fix
+
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --seed=1 --algo=LCL-v2 --bound_fix
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --seed=2 --algo=LCL-v2 --bound_fix
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --seed=3 --algo=LCL-v2 --bound_fix
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --seed=4 --algo=LCL-v2 --bound_fix
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --seed=5 --algo=LCL-v2 --bound_fix
