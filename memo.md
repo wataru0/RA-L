@@ -469,7 +469,18 @@ config = {
 ## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015
 ## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015
 kのランダム化範囲を0.0~1.5に変更したもの
-
+```
+config = {
+    'env':'CustomAnt-v0',
+    # 'env':'Ant-v2',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(16e6), # 20e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00022,
+}
+```
 
 ## LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015
 ## LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015
