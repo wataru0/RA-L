@@ -30,7 +30,6 @@ class UDREnv(gym.Wrapper):
         self.cReward = 0 
         return self.env.reset(**kwargs)
 
-
     def step(self,action):
         if self.cripple_mask is not None:
             joint_mask = [i for i,x in enumerate(self.cripple_mask) if x == 99] # 99が入っているインデックスを取得
