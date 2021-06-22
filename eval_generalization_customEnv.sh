@@ -38,5 +38,9 @@
 # python eval_generalization_customEnv.py --agent=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=10
 # python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --n_episodes=10
 # python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --n_episodes=10
-python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --n_episodes=10
-python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --n_episodes=10
+# python eval_generalization_customEnv.py --agent=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015 --n_episodes=10
+# python eval_generalization_customEnv.py --agent=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015 --n_episodes=10
+python eval_generalization_customEnv.py --agent=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=10
+python eval_generalization_customEnv.py --agent=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=10
+python eval_generalization_customEnv.py --agent=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015 --n_episodes=10
+python eval_generalization_customEnv.py --agent=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015 --n_episodes=10
