@@ -51,8 +51,8 @@ class TDREnv(gym.Wrapper):
         
         # joint_min_range~joint_max_rangeまでの乱数を生成。これがaction値のrangeになる
         # ランダム化範囲を[0.0, 1.0] -> [0.0, 1.5]に変更
-        # modeを1.0にするか，1.5にするかの議論もある
-        self.joint_range = random.triangular(low=0.0, high=1.5, mode=1.0)
+        # modeを1.0にするか，1.5にするかの議論もある?
+        self.joint_range = random.triangular(low=0.0, high=1.5, mode=1.5)
         
 
         # Pick which actuators to disable
