@@ -45,7 +45,9 @@ def main():
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100"]
     
     # 転倒時survival reward=0でkが[0.0, 1.5]でトレーニングしたエージェント
-    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015","CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015"]
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015","CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015"]
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015"]
+    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015"]
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -74,6 +76,10 @@ def main():
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v2",
         "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015":"CDR-v1-fix",
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015":"CDR-v2-fix",
+        "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LCL-v1", 
+        "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LCL-v2", 
+        "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015":"LCL-v1-fix", 
+        "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015":"LCL-v2-fix",
     }
 
     # Create figure dir
