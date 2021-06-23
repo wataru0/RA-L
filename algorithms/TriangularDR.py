@@ -1,5 +1,5 @@
 # Triangular Domain Randomization Algorithm
-# 2021/04/27
+# 2021/06/23
 # パラメータ範囲を三角分布に従ってサンプリングするドメインランダマイゼーション手法 （Triangular Distribution Domain Randomization）
 # train.pyを実行する際に，gym環境をラッパーすることで実装する
 
