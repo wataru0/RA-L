@@ -28,7 +28,7 @@ from stable_baselines import PPO2
 from stable_baselines.common.vec_env import DummyVecEnv
 
 import gym_custom
-from algorithms import CDR, UDR, LinearCurriculumLearning
+from algorithms import CDR, UDR, LinearCurriculumLearning, TriangularDR
 
 best_mean_reward = -np.inf # 平均報酬
 n_updates = 0 # 更新数
@@ -61,7 +61,7 @@ def arg_parser():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--savedir', help='saving name dir for trained mode!!!', type=str, default='Ant'+ datetime.datetime.now().isoformat())
     parser.add_argument('--seed', help='seed for saigensei', type=int, default=1)
-    parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2', 'LCL-v1', 'LCL-v2'], required=True)
+    parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2', 'LCL-v1', 'LCL-v2', 'TDR'], required=True)
     parser.add_argument('--ablation', help='Do you want to do ablation study? hahaha.', default=False, action='store_true')
     parser.add_argument('--bound_fix', help='If you want to fix lower/upper bound in train, use', default=False, action='store_true')
 
@@ -133,6 +133,9 @@ def main():
     
     elif args.algo == "LCL-v2":
         env = LinearCurriculumLearning.LCLEnv(env, version=2, bound_fix=args.bound_fix, total_timestep=config['total_timestep'], n_level=config['n_level'])
+
+    elif args.algo == "TDR":
+        env = TriangularDR.TDREnv(env)
 
     else:
         print("Now, we are training the agent using the baseline method!")
