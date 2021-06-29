@@ -426,9 +426,10 @@ config = {
 こいつら途中で止めた．
 
 ---
+---
 
-2021/05/28
-これからは，「転倒したらエピソード終了」ではなく，転倒した場合，survive reward を0にする or survive rewardを負の値にするという環境で訓練を行ってみる．
+# 2021/05/28
+# これからは，「転倒したらエピソード終了」ではなく，転倒した場合，survive reward を0にする or survive rewardを負の値にするという環境で訓練を行ってみる．
 
 ## Baseline_CustomAnt-ReduceSRto0IfFallingDown
 ## UDR_CustomAnt-ReduceSRto0IfFallingDown
@@ -503,7 +504,7 @@ config = {
 
 ## TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015
 三角分布に従ってkをサンプリングするドメインランダマイゼーション
-'''
+```
 config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
@@ -515,4 +516,4 @@ config = {
     'learning_rate':0.00022, # 0.00020
     'n_level':11, # Linear Curriculum Learningにおいてのkの更新回数
 }
-'''
+```
