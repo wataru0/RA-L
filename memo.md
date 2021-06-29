@@ -469,7 +469,8 @@ config = {
 ## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015
 ## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015
 ## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015
-kのランダム化範囲を0.0~1.5に変更したもの（今までは0.0~1.0だった）
+kのランダム化範囲を0.0~1.5に変更したもの　　
+（今までは0.0~1.0だった）
 ```
 config = {
     'env':'CustomAnt-v0',
