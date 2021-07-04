@@ -245,9 +245,6 @@ def main():
     tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log/"
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
-    # # Create result tmp dir
-    # figdir = "./fig/"
-    # os.makedirs(figdir,exist_ok=True)
 
     # Create ndarray save dir
     nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
