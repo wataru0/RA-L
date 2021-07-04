@@ -203,76 +203,76 @@
 # 2021/06/29
 # Ant-v2での再トレーニング
 
-# ベースライン
-python train.py --savedir=Baseline_Ant-v2 --seed=1 --algo=Baseline
-python train.py --savedir=Baseline_Ant-v2 --seed=2 --algo=Baseline
-python train.py --savedir=Baseline_Ant-v2 --seed=3 --algo=Baseline
-python train.py --savedir=Baseline_Ant-v2 --seed=4 --algo=Baseline
-python train.py --savedir=Baseline_Ant-v2 --seed=5 --algo=Baseline
+# # ベースライン
+# python train.py --savedir=Baseline_Ant-v2 --seed=1 --algo=Baseline
+# python train.py --savedir=Baseline_Ant-v2 --seed=2 --algo=Baseline
+# python train.py --savedir=Baseline_Ant-v2 --seed=3 --algo=Baseline
+# python train.py --savedir=Baseline_Ant-v2 --seed=4 --algo=Baseline
+# python train.py --savedir=Baseline_Ant-v2 --seed=5 --algo=Baseline
 
-# UDR
-python train.py --savedir=UDR_Ant-v2_k0010 --seed=1 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0010 --seed=2 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0010 --seed=3 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0010 --seed=4 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0010 --seed=5 --algo=UDR
-
-# CDR
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=1 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=2 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=3 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=4 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=5 --algo=CDR-v1
-
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=1 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=2 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=3 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=4 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=5 --algo=CDR-v2
-
-# LCL
-python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=1 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=2 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=3 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=4 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=5 --algo=LCL-v1
-
-python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=1 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=2 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=3 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=4 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=5 --algo=LCL-v2
-
-# 以下はk0015の範囲のトレーニング
 # # UDR
-# python train.py --savedir=UDR_Ant-v2_k0015 --seed=1 --algo=UDR
-# python train.py --savedir=UDR_Ant-v2_k0015 --seed=2 --algo=UDR
-# python train.py --savedir=UDR_Ant-v2_k0015 --seed=3 --algo=UDR
-# python train.py --savedir=UDR_Ant-v2_k0015 --seed=4 --algo=UDR
-# python train.py --savedir=UDR_Ant-v2_k0015 --seed=5 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0010 --seed=1 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0010 --seed=2 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0010 --seed=3 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0010 --seed=4 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0010 --seed=5 --algo=UDR
 
 # # CDR
-# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v1
-# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v1
-# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v1
-# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v1
-# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=1 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=2 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=3 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=4 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0010 --seed=5 --algo=CDR-v1
 
-# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v2
-# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v2
-# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v2
-# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v2
-# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=1 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=2 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=3 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=4 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0010 --seed=5 --algo=CDR-v2
 
 # # LCL
-# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=1 --algo=LCL-v1
-# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=2 --algo=LCL-v1
-# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=3 --algo=LCL-v1
-# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=4 --algo=LCL-v1
-# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=5 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=1 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=2 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=3 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=4 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0010 --seed=5 --algo=LCL-v1
 
-# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=1 --algo=LCL-v2
-# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=2 --algo=LCL-v2
-# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=3 --algo=LCL-v2
-# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=4 --algo=LCL-v2
-# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=5 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=1 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=2 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=3 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=4 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=5 --algo=LCL-v2
+
+# 以下はk0015の範囲のトレーニング
+# UDR
+python train.py --savedir=UDR_Ant-v2_k0015 --seed=1 --algo=UDR
+python train.py --savedir=UDR_Ant-v2_k0015 --seed=2 --algo=UDR
+python train.py --savedir=UDR_Ant-v2_k0015 --seed=3 --algo=UDR
+python train.py --savedir=UDR_Ant-v2_k0015 --seed=4 --algo=UDR
+python train.py --savedir=UDR_Ant-v2_k0015 --seed=5 --algo=UDR
+
+# CDR
+python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v1
+python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v1
+python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v1
+python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v1
+python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v1
+
+python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v2
+python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v2
+python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v2
+python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v2
+python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v2
+
+# LCL
+python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=1 --algo=LCL-v1
+python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=2 --algo=LCL-v1
+python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=3 --algo=LCL-v1
+python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=4 --algo=LCL-v1
+python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=5 --algo=LCL-v1
+
+python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=1 --algo=LCL-v2
+python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=2 --algo=LCL-v2
+python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=3 --algo=LCL-v2
+python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=4 --algo=LCL-v2
+python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=5 --algo=LCL-v2
