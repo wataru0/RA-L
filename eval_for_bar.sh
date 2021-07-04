@@ -3,4 +3,9 @@
 # 実行コマンド
 # bash ~.sh
 
-python eval_for_bar.py --agent=TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=10
+python eval_for_bar.py --agent=Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2 --n_episodes=50
+python eval_for_bar.py --agent=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=50
+python eval_for_bar.py --agent=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --n_episodes=50
+python eval_for_bar.py --agent=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015 --n_episodes=50
+python eval_for_bar.py --agent=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=50
+python eval_for_bar.py --agent=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015 --n_episodes=50
