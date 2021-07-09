@@ -64,6 +64,7 @@ def arg_parser():
     parser.add_argument('--algo', help='train algorithm', type=str, choices=['Baseline', 'UDR', 'CDR-v1', 'CDR-v2', 'LCL-v1', 'LCL-v2', 'TDR'], required=True)
     parser.add_argument('--ablation', help='Do you want to do ablation study? hahaha.', default=False, action='store_true')
     parser.add_argument('--bound_fix', help='If you want to fix lower/upper bound in train, use', default=False, action='store_true')
+    parser.add_argument('--baseline_k', help='If you want to fix k of baseline method, set!', type=float, default=1.0)
 
     return parser.parse_args()
 
@@ -139,7 +140,8 @@ def main():
 
     else:
         print("Now, we are training the agent using the baseline method!")
-        
+        env = Baseline.BaselineEnv(env, k=args.baseline_k)
+
     env = Monitor(env, log_dir, allow_early_resets=True) 
     env = DummyVecEnv([lambda :env])
 
