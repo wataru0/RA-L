@@ -544,3 +544,23 @@ config = {
     'learning_rate':0.00022,
 }
 ```
+
+# kを固定して，脚を一本壊しながら学習するエージェント
+## Baseline_Ant-v2_k08
+## Baseline_Ant-v2_k06
+## Baseline_Ant-v2_k04
+## Baseline_Ant-v2_k02
+## Baseline_Ant-v2_k00
+```
+config = {
+    # 'env':'CustomAnt-v0',
+    'env':'Ant-v2',
+    # 'env':'AblationAnt-v0', # for ablation study
+    'total_timestep':int(16e6), # default:16e6, PPO-PytorchのN_updatesとは違い、単純に訓練に使われる総タイムステップ数 
+    'n_steps':128, # ポリシー更新前に収集する経験の数(ステップ数)
+    'nminibatches':4, # 勾配降下に使うミニバッチのサイズ
+    'noptepochs':4, # 収集した経験を勾配降下にかける回数
+    'learning_rate':0.00022, # 0.00020
+    'n_level':11, # Linear Curriculum Learningにおいてのkの更新回数
+}
+```
