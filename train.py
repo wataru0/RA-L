@@ -28,7 +28,7 @@ from stable_baselines import PPO2
 from stable_baselines.common.vec_env import DummyVecEnv
 
 import gym_custom
-from algorithms import CDR, UDR, LinearCurriculumLearning, TriangularDR
+from algorithms import CDR, UDR, LinearCurriculumLearning, TriangularDR, Baseline
 
 best_mean_reward = -np.inf # 平均報酬
 n_updates = 0 # 更新数
@@ -139,6 +139,7 @@ def main():
 
     else:
         print("Now, we are training the agent using the baseline method!")
+        
     env = Monitor(env, log_dir, allow_early_resets=True) 
     env = DummyVecEnv([lambda :env])
 
