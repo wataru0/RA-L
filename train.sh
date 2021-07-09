@@ -243,36 +243,68 @@
 # python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=4 --algo=LCL-v2
 # python train.py --savedir=LCL-v2_Ant-v2_k0010 --seed=5 --algo=LCL-v2
 
-# 以下はk0015の範囲のトレーニング
-# UDR
-python train.py --savedir=UDR_Ant-v2_k0015 --seed=1 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0015 --seed=2 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0015 --seed=3 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0015 --seed=4 --algo=UDR
-python train.py --savedir=UDR_Ant-v2_k0015 --seed=5 --algo=UDR
+# # 以下はk0015の範囲のトレーニング
+# # UDR
+# python train.py --savedir=UDR_Ant-v2_k0015 --seed=1 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0015 --seed=2 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0015 --seed=3 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0015 --seed=4 --algo=UDR
+# python train.py --savedir=UDR_Ant-v2_k0015 --seed=5 --algo=UDR
 
-# CDR
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v1
-python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v1
+# # CDR
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v1
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v1
 
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v2
-python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=1 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=2 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=3 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=4 --algo=CDR-v2
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015 --seed=5 --algo=CDR-v2
 
-# LCL
-python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=1 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=2 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=3 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=4 --algo=LCL-v1
-python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=5 --algo=LCL-v1
+# # LCL
+# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=1 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=2 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=3 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=4 --algo=LCL-v1
+# python train.py --savedir=LCL-v1_Ant-v2_k0015 --seed=5 --algo=LCL-v1
 
-python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=1 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=2 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=3 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=4 --algo=LCL-v2
-python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=5 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=1 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=2 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=3 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=4 --algo=LCL-v2
+# python train.py --savedir=LCL-v2_Ant-v2_k0015 --seed=5 --algo=LCL-v2
+
+# 2021/07/09
+# ベースライン手法（ここでのベースライン手法とは，物理パラメータkをランダム化せず，kを固定して，ランダムに脚を一本壊しながら学習する手法）で壊しながら学習する場合，
+python train.py --savedir=Baseline_Ant-v2_k08 --seed=1 --algo=Baseline --baseline_k=0.8
+python train.py --savedir=Baseline_Ant-v2_k08 --seed=2 --algo=Baseline --baseline_k=0.8
+python train.py --savedir=Baseline_Ant-v2_k08 --seed=3 --algo=Baseline --baseline_k=0.8
+python train.py --savedir=Baseline_Ant-v2_k08 --seed=4 --algo=Baseline --baseline_k=0.8
+python train.py --savedir=Baseline_Ant-v2_k08 --seed=5 --algo=Baseline --baseline_k=0.8
+
+python train.py --savedir=Baseline_Ant-v2_k06 --seed=1 --algo=Baseline --baseline_k=0.6
+python train.py --savedir=Baseline_Ant-v2_k06 --seed=2 --algo=Baseline --baseline_k=0.6
+python train.py --savedir=Baseline_Ant-v2_k06 --seed=3 --algo=Baseline --baseline_k=0.6
+python train.py --savedir=Baseline_Ant-v2_k06 --seed=4 --algo=Baseline --baseline_k=0.6
+python train.py --savedir=Baseline_Ant-v2_k06 --seed=5 --algo=Baseline --baseline_k=0.6
+
+python train.py --savedir=Baseline_Ant-v2_k04 --seed=1 --algo=Baseline --baseline_k=0.4
+python train.py --savedir=Baseline_Ant-v2_k04 --seed=2 --algo=Baseline --baseline_k=0.4
+python train.py --savedir=Baseline_Ant-v2_k04 --seed=3 --algo=Baseline --baseline_k=0.4
+python train.py --savedir=Baseline_Ant-v2_k04 --seed=4 --algo=Baseline --baseline_k=0.4
+python train.py --savedir=Baseline_Ant-v2_k04 --seed=5 --algo=Baseline --baseline_k=0.4
+
+python train.py --savedir=Baseline_Ant-v2_k02 --seed=1 --algo=Baseline --baseline_k=0.2
+python train.py --savedir=Baseline_Ant-v2_k02 --seed=2 --algo=Baseline --baseline_k=0.2
+python train.py --savedir=Baseline_Ant-v2_k02 --seed=3 --algo=Baseline --baseline_k=0.2
+python train.py --savedir=Baseline_Ant-v2_k02 --seed=4 --algo=Baseline --baseline_k=0.2
+python train.py --savedir=Baseline_Ant-v2_k02 --seed=5 --algo=Baseline --baseline_k=0.2
+
+python train.py --savedir=Baseline_Ant-v2_k00 --seed=1 --algo=Baseline --baseline_k=0.0
+python train.py --savedir=Baseline_Ant-v2_k00 --seed=2 --algo=Baseline --baseline_k=0.0
+python train.py --savedir=Baseline_Ant-v2_k00 --seed=3 --algo=Baseline --baseline_k=0.0
+python train.py --savedir=Baseline_Ant-v2_k00 --seed=4 --algo=Baseline --baseline_k=0.0
+python train.py --savedir=Baseline_Ant-v2_k00 --seed=5 --algo=Baseline --baseline_k=0.0
