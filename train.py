@@ -106,7 +106,7 @@ def main():
 
     # HDDに保存する
     home = str(os.environ['HOME'])
-    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log/"
+    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log2/"
     
     if args.ablation:
         # tensorboard_log_dir = "./Ablation/tensorboard_log/"
