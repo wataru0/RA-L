@@ -45,7 +45,8 @@ reward_contact_map = np.zeros((5, 100, 100))
 reward_survive_map = np.zeros((5, 100, 100))
 
 config = {
-    'env':'CustomAnt-v0',
+    # 'env':'CustomAnt-v0',
+    'env':'Ant-v2',
     'joint_min_range':0.0,
     'joint_max_range':1.0,
 }
