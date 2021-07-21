@@ -141,16 +141,13 @@ def main():
     tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log/"
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
-
     # Create ndarray save dir
     nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
-    # nd_dir = "./Data/barplot/CustomAnt_2JointBroken/" + str(args.agent) + "/" # ランダムな関節2個が故障する環境での評価を格納するディレクトリ
     os.makedirs(nd_dir, exist_ok=True)
 
     # Create and wrap the environment 
     env1 = gym.make(config['env'])
     broken_env = ChangeJointRangeEnv(env1) # 脚一本が故障する環境
-    # broken_env = Random2JointBrokenEnv(env1) # 関節2個が故障する環境
 
     if args.video:
         broken_env = wrappers.Monitor(broken_env,'./videos/' + args.loaddir + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
@@ -162,14 +159,11 @@ def main():
     agentName = []
     agentName.append(args.agent)
 
-
     plainData = []
     brokenData = []
     perror = []
     berror = []
 
-    plt.figure()
-    sns.set()
     # fig,ax = plt.subplots()
     for agent in agentName:
         brokenSeedAveReward = []
@@ -253,8 +247,6 @@ def main():
 
     brokenData = np.array(brokenData).flatten()
     berror = np.array(berror)
-
-    
 
     # print(k_gene)
     for seed in range(1, 6):
