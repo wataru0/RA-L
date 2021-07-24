@@ -47,7 +47,7 @@ reward_survive_map = np.zeros((5, 100, 101))
 
 config = {
     # 'env':'CustomAnt-v0',
-    'env':'Ant-v2',
+    # 'env':'Ant-v2',
     'joint_min_range':0.0,
     'joint_max_range':1.0,
 }
@@ -143,14 +143,18 @@ def main():
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
     # Create ndarray save dir
-    # CustomAntで評価する時
-    # nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
     # Ant-v2で評価する時
-    nd_dir = "./Data/barplot/Ant-v2/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
+    if 'Ant-v2' in args.agent:
+        # ランダムな脚が故障する環境での評価を格納するディレクトリ
+        nd_dir = "./Data/barplot/Ant-v2/" + str(args.agent) + "/" 
+        env1 = gym.make('Ant-v2')
+    # CustomAntで評価する時
+    else:
+        nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" 
+        env1 = gym.make('CustomAnt-v0')
     os.makedirs(nd_dir, exist_ok=True)
 
-    # Create and wrap the environment 
-    env1 = gym.make(config['env'])
+    # wrap the environment 
     broken_env = ChangeJointRangeEnv(env1) # 脚一本が故障する環境
 
     if args.video:
