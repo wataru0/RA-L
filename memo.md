@@ -551,6 +551,8 @@ config = {
 ## Baseline_Ant-v2_k04
 ## Baseline_Ant-v2_k02
 ## Baseline_Ant-v2_k00
+## Baseline_Ant-v2_k12
+## Baseline_Ant-v2_k14
 ```
 config = {
     # 'env':'CustomAnt-v0',
