@@ -46,7 +46,8 @@ reward_contact_map = np.zeros((5, 100, 101))
 reward_survive_map = np.zeros((5, 100, 101))
 
 config = {
-    'env':'CustomAnt-v0',
+    # 'env':'CustomAnt-v0',
+    'env':'Ant-v2',
     'joint_min_range':0.0,
     'joint_max_range':1.0,
 }
@@ -142,7 +143,10 @@ def main():
     os.makedirs(tensorboard_log_dir,exist_ok=True)
 
     # Create ndarray save dir
-    nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
+    # CustomAntで評価する時
+    # nd_dir = "./Data/barplot/CustomAnt/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
+    # Ant-v2で評価する時
+    nd_dir = "./Data/barplot/Ant-v2/" + str(args.agent) + "/" # ランダムな脚が故障する環境での評価を格納するディレクトリ
     os.makedirs(nd_dir, exist_ok=True)
 
     # Create and wrap the environment 
