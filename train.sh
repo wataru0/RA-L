@@ -279,32 +279,44 @@
 
 # 2021/07/09
 # ベースライン手法（ここでのベースライン手法とは，物理パラメータkをランダム化せず，kを固定して，ランダムに脚を一本壊しながら学習する手法）で壊しながら学習する場合，
-python train.py --savedir=Baseline_Ant-v2_k08 --seed=1 --algo=Baseline --baseline_k=0.8
-python train.py --savedir=Baseline_Ant-v2_k08 --seed=2 --algo=Baseline --baseline_k=0.8
-python train.py --savedir=Baseline_Ant-v2_k08 --seed=3 --algo=Baseline --baseline_k=0.8
-python train.py --savedir=Baseline_Ant-v2_k08 --seed=4 --algo=Baseline --baseline_k=0.8
-python train.py --savedir=Baseline_Ant-v2_k08 --seed=5 --algo=Baseline --baseline_k=0.8
+# python train.py --savedir=Baseline_Ant-v2_k08 --seed=1 --algo=Baseline --baseline_k=0.8
+# python train.py --savedir=Baseline_Ant-v2_k08 --seed=2 --algo=Baseline --baseline_k=0.8
+# python train.py --savedir=Baseline_Ant-v2_k08 --seed=3 --algo=Baseline --baseline_k=0.8
+# python train.py --savedir=Baseline_Ant-v2_k08 --seed=4 --algo=Baseline --baseline_k=0.8
+# python train.py --savedir=Baseline_Ant-v2_k08 --seed=5 --algo=Baseline --baseline_k=0.8
 
-python train.py --savedir=Baseline_Ant-v2_k06 --seed=1 --algo=Baseline --baseline_k=0.6
-python train.py --savedir=Baseline_Ant-v2_k06 --seed=2 --algo=Baseline --baseline_k=0.6
-python train.py --savedir=Baseline_Ant-v2_k06 --seed=3 --algo=Baseline --baseline_k=0.6
-python train.py --savedir=Baseline_Ant-v2_k06 --seed=4 --algo=Baseline --baseline_k=0.6
-python train.py --savedir=Baseline_Ant-v2_k06 --seed=5 --algo=Baseline --baseline_k=0.6
+# python train.py --savedir=Baseline_Ant-v2_k06 --seed=1 --algo=Baseline --baseline_k=0.6
+# python train.py --savedir=Baseline_Ant-v2_k06 --seed=2 --algo=Baseline --baseline_k=0.6
+# python train.py --savedir=Baseline_Ant-v2_k06 --seed=3 --algo=Baseline --baseline_k=0.6
+# python train.py --savedir=Baseline_Ant-v2_k06 --seed=4 --algo=Baseline --baseline_k=0.6
+# python train.py --savedir=Baseline_Ant-v2_k06 --seed=5 --algo=Baseline --baseline_k=0.6
 
-python train.py --savedir=Baseline_Ant-v2_k04 --seed=1 --algo=Baseline --baseline_k=0.4
-python train.py --savedir=Baseline_Ant-v2_k04 --seed=2 --algo=Baseline --baseline_k=0.4
-python train.py --savedir=Baseline_Ant-v2_k04 --seed=3 --algo=Baseline --baseline_k=0.4
-python train.py --savedir=Baseline_Ant-v2_k04 --seed=4 --algo=Baseline --baseline_k=0.4
-python train.py --savedir=Baseline_Ant-v2_k04 --seed=5 --algo=Baseline --baseline_k=0.4
+# python train.py --savedir=Baseline_Ant-v2_k04 --seed=1 --algo=Baseline --baseline_k=0.4
+# python train.py --savedir=Baseline_Ant-v2_k04 --seed=2 --algo=Baseline --baseline_k=0.4
+# python train.py --savedir=Baseline_Ant-v2_k04 --seed=3 --algo=Baseline --baseline_k=0.4
+# python train.py --savedir=Baseline_Ant-v2_k04 --seed=4 --algo=Baseline --baseline_k=0.4
+# python train.py --savedir=Baseline_Ant-v2_k04 --seed=5 --algo=Baseline --baseline_k=0.4
 
-python train.py --savedir=Baseline_Ant-v2_k02 --seed=1 --algo=Baseline --baseline_k=0.2
-python train.py --savedir=Baseline_Ant-v2_k02 --seed=2 --algo=Baseline --baseline_k=0.2
-python train.py --savedir=Baseline_Ant-v2_k02 --seed=3 --algo=Baseline --baseline_k=0.2
-python train.py --savedir=Baseline_Ant-v2_k02 --seed=4 --algo=Baseline --baseline_k=0.2
-python train.py --savedir=Baseline_Ant-v2_k02 --seed=5 --algo=Baseline --baseline_k=0.2
+# python train.py --savedir=Baseline_Ant-v2_k02 --seed=1 --algo=Baseline --baseline_k=0.2
+# python train.py --savedir=Baseline_Ant-v2_k02 --seed=2 --algo=Baseline --baseline_k=0.2
+# python train.py --savedir=Baseline_Ant-v2_k02 --seed=3 --algo=Baseline --baseline_k=0.2
+# python train.py --savedir=Baseline_Ant-v2_k02 --seed=4 --algo=Baseline --baseline_k=0.2
+# python train.py --savedir=Baseline_Ant-v2_k02 --seed=5 --algo=Baseline --baseline_k=0.2
 
-python train.py --savedir=Baseline_Ant-v2_k00 --seed=1 --algo=Baseline --baseline_k=0.0
-python train.py --savedir=Baseline_Ant-v2_k00 --seed=2 --algo=Baseline --baseline_k=0.0
-python train.py --savedir=Baseline_Ant-v2_k00 --seed=3 --algo=Baseline --baseline_k=0.0
-python train.py --savedir=Baseline_Ant-v2_k00 --seed=4 --algo=Baseline --baseline_k=0.0
-python train.py --savedir=Baseline_Ant-v2_k00 --seed=5 --algo=Baseline --baseline_k=0.0
+# python train.py --savedir=Baseline_Ant-v2_k00 --seed=1 --algo=Baseline --baseline_k=0.0
+# python train.py --savedir=Baseline_Ant-v2_k00 --seed=2 --algo=Baseline --baseline_k=0.0
+# python train.py --savedir=Baseline_Ant-v2_k00 --seed=3 --algo=Baseline --baseline_k=0.0
+# python train.py --savedir=Baseline_Ant-v2_k00 --seed=4 --algo=Baseline --baseline_k=0.0
+# python train.py --savedir=Baseline_Ant-v2_k00 --seed=5 --algo=Baseline --baseline_k=0.0
+
+python train.py --savedir=Baseline_Ant-v2_k12 --seed=1 --algo=Baseline --baseline_k=1.2
+python train.py --savedir=Baseline_Ant-v2_k12 --seed=2 --algo=Baseline --baseline_k=1.2
+python train.py --savedir=Baseline_Ant-v2_k12 --seed=3 --algo=Baseline --baseline_k=1.2
+python train.py --savedir=Baseline_Ant-v2_k12 --seed=4 --algo=Baseline --baseline_k=1.2
+python train.py --savedir=Baseline_Ant-v2_k12 --seed=5 --algo=Baseline --baseline_k=1.2
+
+python train.py --savedir=Baseline_Ant-v2_k14 --seed=1 --algo=Baseline --baseline_k=1.4
+python train.py --savedir=Baseline_Ant-v2_k14 --seed=2 --algo=Baseline --baseline_k=1.4
+python train.py --savedir=Baseline_Ant-v2_k14 --seed=3 --algo=Baseline --baseline_k=1.4
+python train.py --savedir=Baseline_Ant-v2_k14 --seed=4 --algo=Baseline --baseline_k=1.4
+python train.py --savedir=Baseline_Ant-v2_k14 --seed=5 --algo=Baseline --baseline_k=1.4
