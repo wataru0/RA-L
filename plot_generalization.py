@@ -92,7 +92,7 @@ def main():
     }
 
     # Create figure dir
-    figdir = "./fig/all"
+    figdir = "./fig/all/"
     os.makedirs(figdir,exist_ok=True)
 
     sns.set()
