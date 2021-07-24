@@ -39,6 +39,23 @@ def main():
     else:
         nd_path = "./Data/barplot/CustomAnt/" + str(args.agent) + "/"
 
+    if 'k00' in args.agent:
+        label = 'k=0.0'
+    elif 'k02' in args.agent:
+        label = 'k=0.2'
+    elif 'k04' in args.agent:
+        label = 'k=0.4'
+    elif 'k06' in args.agent:
+        label = 'k=0.6'
+    elif 'k08' in args.agent:
+        label = 'k=0.8'
+    elif 'k12' in args.agent:
+        label = 'k=1.2'
+    elif 'k14' in args.agent:
+        label = 'k=1.4'
+    else:
+        label = 'k=1.0'
+
     agent_array = {}
     for seed in range(1, 6):
         agent_array[seed] = np.load(nd_path + str(args.agent) + '_rewardForward_seed=' + str(seed) + '.npy')
@@ -60,7 +77,7 @@ def main():
         height.append(value)
 
     x = np.arange(len(height))
-    plt.bar(x, height, label='k=1.0', tick_label=xlabels)
+    plt.bar(x, height, label=label, tick_label=xlabels)
     plt.legend()
     plt.xlabel('k')
     plt.ylabel('average reward')
