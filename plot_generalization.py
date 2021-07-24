@@ -48,7 +48,8 @@ def main():
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015","CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015"]
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015"]
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015", "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
-    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
+    filename = ['Baseline_Ant-v2', 'Baseline_Ant-v2_k08', 'Baseline_Ant-v2_k06', 'Baseline_Ant-v2_k04', 'Baseline_Ant-v2_k02', 'Baseline_Ant-v2_k00']
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -82,6 +83,12 @@ def main():
         "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015":"LCL-v1-fix", 
         "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015":"LCL-v2-fix",
         "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015":"TDR",
+        'Baseline_Ant-v2':'k=1.0', 
+        'Baseline_Ant-v2_k08':'k=0.8', 
+        'Baseline_Ant-v2_k06':'k=0.6', 
+        'Baseline_Ant-v2_k04':'k=0.4', 
+        'Baseline_Ant-v2_k02':'k=0.2', 
+        'Baseline_Ant-v2_k00':'k=0.0',
     }
 
     # Create figure dir
