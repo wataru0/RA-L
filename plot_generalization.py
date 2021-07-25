@@ -49,7 +49,10 @@ def main():
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015","LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015"]
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015", "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
-    filename = ['Baseline_Ant-v2', 'Baseline_Ant-v2_k08', 'Baseline_Ant-v2_k06', 'Baseline_Ant-v2_k04', 'Baseline_Ant-v2_k02', 'Baseline_Ant-v2_k00']
+    # filename = ['Baseline_Ant-v2', 'Baseline_Ant-v2_k08', 'Baseline_Ant-v2_k06', 'Baseline_Ant-v2_k04', 'Baseline_Ant-v2_k02', 'Baseline_Ant-v2_k00']
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015", "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015"]
+    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015"]
+
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -74,12 +77,14 @@ def main():
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100":"CDR-v2-fix",
         "Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2":"Baseline",
         "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015":"UDR", 
-        "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v1", 
-        "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v2",
+        # "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v1", 
+        # "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v2",
+        "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR_easy2hard", 
+        "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR_hard2easy",
         "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100_k0015":"CDR-v1-fix",
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100_k0015":"CDR-v2-fix",
-        "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LCL-v1", 
-        "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LCL-v2", 
+        "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LDR_easy2hard", 
+        "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015":"LDR_hard2easy", 
         "LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_k0015":"LCL-v1-fix", 
         "LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_k0015":"LCL-v2-fix",
         "TDR_CustomAnt-ReduceSRto0IfFallingDown_k0015":"TDR",
