@@ -13,7 +13,8 @@ def arg_parser():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--agent', help = 'put in agent name for evaluation', type = str, default = 'Baseline_Ant-v2')
     parser.add_argument('--n_episodes', help= 'put in number of episodes', type=int, default= 10)
-    parser.add_argument('--video', default=False, action='store_true')    
+    parser.add_argument('--video', default=False, action='store_true')
+    parser.add_argument('--plotType', help='put in figure type', type=str ,default='reward', choices=['reward', 'forward'])
     return parser.parse_args()
 
 # nd_array５つを一つにまとめる関数，まとめる際に平均をとっている
@@ -31,7 +32,10 @@ def main():
     args = arg_parser()
 
     # Create figure dir
-    figdir = "./fig/bar/"
+    if args.plotType == 'reward':
+        figdir = "./fig/bar/reward/"
+    elif args.plotType == 'forward':
+        figdir = "./fig/bar/forward/"
     os.makedirs(figdir, exist_ok=True)
 
     if 'Ant-v2' in args.agent: 
@@ -57,8 +61,12 @@ def main():
         label = 'k=1.0'
 
     agent_array = {}
-    for seed in range(1, 6):
-        agent_array[seed] = np.load(nd_path + str(args.agent) + '_rewardForward_seed=' + str(seed) + '.npy')
+    if args.plotType == 'reward':
+        for seed in range(1, 6):
+            agent_array[seed] = np.load(nd_path + str(args.agent) + '_rewardForEachK_seed=' + str(seed) + '.npy')
+    elif args.plotType == 'forward':
+        for seed in range(1, 6):
+            agent_array[seed] = np.load(nd_path + str(args.agent) + '_rewardForward_seed=' + str(seed) + '.npy')
 
     array = combine(agent_array[1], agent_array[2], agent_array[3], agent_array[4], agent_array[5])
     dic = {}
@@ -80,7 +88,10 @@ def main():
     plt.bar(x, height, label=label, tick_label=xlabels)
     plt.legend()
     plt.xlabel('k')
-    plt.ylabel('average reward')
+    if args.plotType == 'reward':
+        plt.ylabel('Average Reward')
+    elif args.plotType == 'forward':
+        plt.ylabel('Average Progress')
     plt.savefig(figdir + '{}.png'.format(args.agent))
 
 if __name__ == '__main__':
