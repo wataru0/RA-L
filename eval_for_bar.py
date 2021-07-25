@@ -37,13 +37,13 @@ best_mean_reward, n_updates = -np.inf,0
 rewardsMap = { } 
 
 # kを0から1まで，0.01刻みで格納する配列
-k_gene = np.zeros((5, 100, 101))
+k_gene = np.zeros((5, 100, 151))
 
 # 報酬関数の各項の影響力を可視化するための配列
-reward_forward_map = np.zeros((5, 100, 101))
-reward_ctrl_map = np.zeros((5, 100, 101))
-reward_contact_map = np.zeros((5, 100, 101))
-reward_survive_map = np.zeros((5, 100, 101))
+reward_forward_map = np.zeros((5, 100, 151))
+reward_ctrl_map = np.zeros((5, 100, 151))
+reward_contact_map = np.zeros((5, 100, 151))
+reward_survive_map = np.zeros((5, 100, 151))
 
 config = {
     # 'env':'CustomAnt-v0',
@@ -201,8 +201,8 @@ def main():
             contacts = 0
             survives = 0
 
-            # kを0から1まで，0.1刻みで変化させる
-            for k in tqdm(range(0, 101, 10)):
+            # kを0から1.5まで，0.1刻みで変化させる
+            for k in tqdm(range(0, 151, 10)):
                 # 故障が起きる環境でのrewardを求めるループ(100)
                 for episode in range(args.n_episodes):
                     # iteration of time steps, default is 1000 time steps
