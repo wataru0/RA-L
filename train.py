@@ -24,7 +24,7 @@ from stable_baselines.bench import Monitor
 from stable_baselines.results_plotter import load_results,ts2xy
 from stable_baselines import results_plotter
 from stable_baselines.common import make_vec_env
-from stable_baselines import PPO2
+from stable_baselines import PPO2, SAC
 from stable_baselines.common.vec_env import DummyVecEnv
 
 import gym_custom
@@ -45,6 +45,7 @@ os.makedirs(log_dir,exist_ok=True)
 # https://medium.com/aureliantactics/ppo-hyperparameters-and-ranges-6fc2d29bccbe
 # ---------------------------------------------------------------------------
 
+# env以外はppo用のパラメータ
 config = {
     # 'env':'CustomAnt-v0',
     'env':'Ant-v2',
@@ -65,6 +66,7 @@ def arg_parser():
     parser.add_argument('--ablation', help='Do you want to do ablation study? hahaha.', default=False, action='store_true')
     parser.add_argument('--bound_fix', help='If you want to fix lower/upper bound in train, use', default=False, action='store_true')
     parser.add_argument('--baseline_k', help='If you want to fix k of baseline method, set!', type=float, default=1.0)
+    parser.add_argument('--RL_algo', help='Chose RL algorithms', type=str, default='ppo', choices=['ppo', 'sac'])
 
     return parser.parse_args()
 
@@ -100,7 +102,6 @@ def main():
     # Set trained agent dir and tensorbord dir
     if args.ablation is not True:
         save_dir = "./trained_agent_dir/"+ args.savedir + "/"
-
         # Create dir
         os.makedirs(save_dir,exist_ok=True)
 
@@ -110,7 +111,7 @@ def main():
     
     if args.ablation:
         # tensorboard_log_dir = "./Ablation/tensorboard_log/"
-        tensorboard_log_dir = home + "/HDD/RA-L/Ablation_tensorboard_log/"
+        tensorboard_log_dir = home + "/HDD/RA-L/Ablation_tensorboard_log2/"
         
     # Create dir
     os.makedirs(tensorboard_log_dir,exist_ok=True)
@@ -145,12 +146,19 @@ def main():
     env = Monitor(env, log_dir, allow_early_resets=True) 
     env = DummyVecEnv([lambda :env])
 
-    # create model
-    model = PPO2(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], nminibatches=config['nminibatches'], noptepochs=config['noptepochs'], learning_rate=config['learning_rate'], seed=args.seed)
-    
-    # train model
-    model.learn(total_timesteps=config['total_timestep'], callback=callback, tb_log_name=args.savedir)
+    # create model and train
+    if args.RL_algo == 'ppo':
+        model = PPO2(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], nminibatches=config['nminibatches'], noptepochs=config['noptepochs'], learning_rate=config['learning_rate'], seed=args.seed)
+        # train model
+        model.learn(total_timesteps=config['total_timestep'], callback=callback, tb_log_name=args.savedir)
 
+    elif args.RL_algo == 'sac':
+        # model = SAC(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], n_batch=1, learning_rate=config['learning_rate'], seed=args.seed)
+        model = SAC("MlpPolicy", env, verbose=1, tensorboard_log=tensorboard_log_dir)
+        # train model
+        model.learn(total_timesteps=config['total_timestep'], tb_log_name=args.savedir)
+
+    
     # Save the model(agent)
     if args.ablation is not True:
         model.save(save_dir + "trainedAnt" + "-seed"+ str(args.seed))
