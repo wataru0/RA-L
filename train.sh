@@ -309,14 +309,24 @@
 # python train.py --savedir=Baseline_Ant-v2_k00 --seed=4 --algo=Baseline --baseline_k=0.0
 # python train.py --savedir=Baseline_Ant-v2_k00 --seed=5 --algo=Baseline --baseline_k=0.0
 
-python train.py --savedir=Baseline_Ant-v2_k12 --seed=1 --algo=Baseline --baseline_k=1.2
-python train.py --savedir=Baseline_Ant-v2_k12 --seed=2 --algo=Baseline --baseline_k=1.2
-python train.py --savedir=Baseline_Ant-v2_k12 --seed=3 --algo=Baseline --baseline_k=1.2
-python train.py --savedir=Baseline_Ant-v2_k12 --seed=4 --algo=Baseline --baseline_k=1.2
-python train.py --savedir=Baseline_Ant-v2_k12 --seed=5 --algo=Baseline --baseline_k=1.2
+# python train.py --savedir=Baseline_Ant-v2_k12 --seed=1 --algo=Baseline --baseline_k=1.2
+# python train.py --savedir=Baseline_Ant-v2_k12 --seed=2 --algo=Baseline --baseline_k=1.2
+# python train.py --savedir=Baseline_Ant-v2_k12 --seed=3 --algo=Baseline --baseline_k=1.2
+# python train.py --savedir=Baseline_Ant-v2_k12 --seed=4 --algo=Baseline --baseline_k=1.2
+# python train.py --savedir=Baseline_Ant-v2_k12 --seed=5 --algo=Baseline --baseline_k=1.2
 
-python train.py --savedir=Baseline_Ant-v2_k14 --seed=1 --algo=Baseline --baseline_k=1.4
-python train.py --savedir=Baseline_Ant-v2_k14 --seed=2 --algo=Baseline --baseline_k=1.4
-python train.py --savedir=Baseline_Ant-v2_k14 --seed=3 --algo=Baseline --baseline_k=1.4
-python train.py --savedir=Baseline_Ant-v2_k14 --seed=4 --algo=Baseline --baseline_k=1.4
-python train.py --savedir=Baseline_Ant-v2_k14 --seed=5 --algo=Baseline --baseline_k=1.4
+# python train.py --savedir=Baseline_Ant-v2_k14 --seed=1 --algo=Baseline --baseline_k=1.4
+# python train.py --savedir=Baseline_Ant-v2_k14 --seed=2 --algo=Baseline --baseline_k=1.4
+# python train.py --savedir=Baseline_Ant-v2_k14 --seed=3 --algo=Baseline --baseline_k=1.4
+# python train.py --savedir=Baseline_Ant-v2_k14 --seed=4 --algo=Baseline --baseline_k=1.4
+# python train.py --savedir=Baseline_Ant-v2_k14 --seed=5 --algo=Baseline --baseline_k=1.4
+
+# SACでの学習
+# _SACがついていない今までのエージェントはPPOで学習したもの！！！！
+# Baseline
+python train.py --savedir=Baseline_Ant-v2_SAC --seed=1 --algo=Baseline --RL_algo=sac
+python train.py --savedir=Baseline_Ant-v2_SAC --seed=2 --algo=Baseline --RL_algo=sac
+python train.py --savedir=Baseline_Ant-v2_SAC --seed=3 --algo=Baseline --RL_algo=sac
+python train.py --savedir=Baseline_Ant-v2_SAC --seed=4 --algo=Baseline --RL_algo=sac
+python train.py --savedir=Baseline_Ant-v2_SAC --seed=5 --algo=Baseline --RL_algo=sac
+
