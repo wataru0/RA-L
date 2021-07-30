@@ -107,7 +107,7 @@ def main():
 
     # HDDに保存する
     home = str(os.environ['HOME'])
-    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log2/"
+    tensorboard_log_dir = home + "/HDD/RA-L/tensorboard_log3/"
     
     if args.ablation:
         # tensorboard_log_dir = "./Ablation/tensorboard_log/"
@@ -153,10 +153,10 @@ def main():
         model.learn(total_timesteps=config['total_timestep'], callback=callback, tb_log_name=args.savedir)
 
     elif args.RL_algo == 'sac':
-        # model = SAC(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], n_batch=1, learning_rate=config['learning_rate'], seed=args.seed)
+        # model = SAC(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], learning_rate=config['learning_rate'], seed=args.seed)
         model = SAC("MlpPolicy", env, verbose=1, tensorboard_log=tensorboard_log_dir)
         # train model
-        model.learn(total_timesteps=config['total_timestep'], tb_log_name=args.savedir)
+        model.learn(total_timesteps=config['total_timestep'], tb_log_name=args.savedir, log_interval=10)
 
     
     # Save the model(agent)
