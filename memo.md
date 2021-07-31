@@ -569,3 +569,5 @@ config = {
 
 # SACでの学習
 ## Baseline_Ant-v2_SAC
+
+total_timestepsを4e6にした
