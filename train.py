@@ -156,7 +156,7 @@ def main():
         # model = SAC(MlpPolicy, env, verbose=1, tensorboard_log=tensorboard_log_dir, n_steps=config['n_steps'], learning_rate=config['learning_rate'], seed=args.seed)
         model = SAC("MlpPolicy", env, verbose=1, tensorboard_log=tensorboard_log_dir)
         # train model
-        model.learn(total_timesteps=config['total_timestep'], tb_log_name=args.savedir, log_interval=10)
+        model.learn(total_timesteps=int(4e6), tb_log_name=args.savedir, log_interval=10)
 
     
     # Save the model(agent)
