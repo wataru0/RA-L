@@ -567,7 +567,25 @@ config = {
 }
 ```
 
+---
+
 # SACでの学習
 ## Baseline_Ant-v2_SAC
+## UDR_Ant-v2_k0015_SAC
+## CDR-v1_Ant-v2_bf100_k0015_SAC
+## CDR-v2_Ant-v2_bf100_k0015_SAC
+## LCL-v1_Ant-v2_k0015_SAC
+## LCL-v2_Ant-v2_k0015_SAC
 
+環境は Ant-v2
 total_timestepsを4e6にした
+
+## Baseline_CustomAnt-ReduceSRto0IfFallingDown_SAC
+## UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015_SAC
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015_SAC
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015_SAC
+## LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015_SAC
+## LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015_SAC
+
+環境は CustomAnt-v0
+
