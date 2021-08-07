@@ -278,10 +278,10 @@ def main():
     print(berror)
 
     # 結果のndarray（各手法の平均報酬）をdataとして保存
-    np.save(nd_dir + "plainAverageReward_{}".format(time), plainData)
-    np.save(nd_dir + "brokenAverageReward_{}".format(time), brokenData)
-    np.save(nd_dir + "plainError_{}".format(time), perror)
-    np.save(nd_dir + "brokenError_{}".format(time), berror)
+    np.save(nd_dir + "plainAverageReward", plainData)
+    np.save(nd_dir + "brokenAverageReward", brokenData)
+    np.save(nd_dir + "plainError", perror)
+    np.save(nd_dir + "brokenError", berror)
 
     # # figにプロットしていく
     # ax.bar(x-width/2,plainData,width=width,color='blue',align='center',label='plain',yerr=perror)
