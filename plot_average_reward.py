@@ -12,6 +12,7 @@ figdir = "./fig/AverageReward/"
 os.makedirs(figdir,exist_ok=True)
 
 savedir = "./Data/AverageReward/"
+# savedir = "./Data/AverageReward/Ant-v2/"
 
 # agent name
 agentName = ['Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2', 'UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015'] 

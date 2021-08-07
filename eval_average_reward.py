@@ -37,6 +37,7 @@ best_mean_reward, n_updates = -np.inf,0
 
 config = {
     'env':'CustomAnt-v0',
+    # 'env':'Ant-v2',
     'joint_min_range':0.0,
     'joint_max_range':1.0,
     'through_joint_range':2.0, # スルーするjoint_rangeの指定
@@ -152,6 +153,7 @@ def main():
     # Create ndarray save dir
     # ランダムな脚が故障する環境での評価を格納するディレクトリ
     nd_dir = "./Data/AverageReward/" + str(args.agent) + "/" 
+    # nd_dir = "./Data/AverageReward/Ant-v2/" + str(args.agent) + "/" 
     os.makedirs(nd_dir, exist_ok=True)
 
     # Create and wrap the environment 
@@ -193,7 +195,6 @@ def main():
         # seedごとに平均報酬を獲得する ,range(1,6)
         for seed in range(1,6):
             # PPO2modelの生成(トレーニングを行うエージェントの作成)
-            # trainedAnt = PPO2(MlpPolicy,env1,verbose=1,tensorboard_log=tensorboard_log_dir,seed=100+seed)
             trainedAnt = PPO2(MlpPolicy,env1,verbose=1,tensorboard_log=tensorboard_log_dir)
 
             # 保存したモデル（学習済みモデル）のload ：zipファイルのファイル名のみとパスを指定,seedごとに
