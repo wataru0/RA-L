@@ -86,8 +86,8 @@ class ChangeJointRangeEnv(gym.Wrapper):
             joint_mask = [i for i,x in enumerate(self.cripple_mask) if x == 99] # 99が入っているインデックスを取得
             #print(joint_mask) # [4,5]のように表示される
             if joint_mask != []:
-                action[joint_mask[0]]=henkan(action[joint_mask[0]],-1,1,-self.joint_range,self.joint_range)
-                action[joint_mask[1]]=henkan(action[joint_mask[1]],-1,1,-self.joint_range,self.joint_range)
+                action[joint_mask[0]] = action[joint_mask[0]] * self.joint_range
+                action[joint_mask[1]] = action[joint_mask[1]] * self.joint_range
 
         obs,reward,done,info = self.env.step(action)
         
