@@ -16,6 +16,7 @@ savedir = "./Data/AverageReward/"
 
 # agent name
 agentName = ['Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2', 'UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015'] 
+label = np.array(["Baseline", "UDR", "LDR_easy2hard", "LDR_hard2easy", "ADR_easy2hard", "ADR_hard2easy"])
 
 # ndarray load
 # print(np.load(savedir + 'Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2' + "/plainAverageReward.npy"))
@@ -50,7 +51,6 @@ sns.set()
 fig, ax = plt.subplots()
 width = 0.35
 x = np.arange(len(plainReward))
-label = np.array(["Baseline", "UDR", "LDR_easy2hard", "LDR_hard2easy", "ADR_easy2hard", "ADR_hard2easy"])
 
 # plot
 ax.bar(x-width/2, plainReward, width=width, color='blue', align='center', label='plain', yerr=plainError)
