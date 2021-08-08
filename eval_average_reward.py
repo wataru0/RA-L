@@ -39,14 +39,16 @@ config = {
     'env':'CustomAnt-v0',
     # 'env':'Ant-v2',
     'joint_min_range':0.0,
-    'joint_max_range':1.0,
+    'joint_max_range':0.6,
     'through_joint_range':2.0, # スルーするjoint_rangeの指定
     'validation':False,
 }
 
 def mujoco_arg_parser():
     parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--agent', help = 'put in agent name for evaluation', type = str, default = 'Baseline-16million-v3')
+    parser.add_argument('--agent', help = 'put in agent name for evaluation', type = str, default = 'Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2')
+    parser.add_argument('--k_max', help= 'put in max of k', type=float, default=1.0)
+    parser.add_argument('--k_min', help= 'put in max of k', type=float, default=0.0)
     parser.add_argument('--video',default=False,action='store_true')
     
     return parser.parse_args()
@@ -56,7 +58,7 @@ def henkan(val,start1,stop1,start2,stop2):
 
 # wrapper env class !!!!!--------------------
 class NormalEnv(gym.Wrapper):
-    def __init__(self,env,value=None):
+    def __init__(self, env, value=None):
         super().__init__(env)
         self.value = value
         
@@ -68,13 +70,15 @@ class NormalEnv(gym.Wrapper):
         return obs,reward,done,info
 
 class ChangeJointRangeEnv(gym.Wrapper):
-    def __init__(self,env,value=None):
+    def __init__(self, env, value=None, k_max=1.0, k_min=0.0):
         super().__init__(env) # 親クラスの呼び出しが必要
         self.value = value # crippled leg number
         self.crippled_leg = 0
         self.cripple_mask = np.ones(self.action_space.shape)
         self._init_geom_rgba = self.model.geom_rgba.copy()
         self.joint_range = 1
+        self.k_max = k_max
+        self.k_min = k_min
 
     def reset(self,**kwargs): 
         self.reset_task()
@@ -89,19 +93,22 @@ class ChangeJointRangeEnv(gym.Wrapper):
                 action[joint_mask[0]] = action[joint_mask[0]] * self.joint_range
                 action[joint_mask[1]] = action[joint_mask[1]] * self.joint_range
 
-        obs,reward,done,info = self.env.step(action)
+        obs, reward, done, info = self.env.step(action)
         
         return obs,reward,done,info
 
     def reset_task(self,value=None):
         # randomly cripple leg (4 is nothing)
-        self.crippled_leg = value if value is not None else np.random.randint(0,5) # (0,4)だと0から4個なので0,1,2,3までしかでない！！
+        self.crippled_leg = value if value is not None else np.random.randint(0,4) # (0,4)だと0から4個なので0,1,2,3までしかでない！！
         
-        # 分布内の故障の時は乱数を作り直す処理
-        while True:
-            self.joint_range = random.uniform(config['joint_min_range'],config['joint_max_range'])
-            if self.joint_range != config['through_joint_range']: 
-                break
+        self.joint_range = random.uniform(self.k_min, self.k_max)
+        # self.joint_range = random.triangular(low=0.0, high=1.0, mode=0.0)
+
+        # # 分布内の故障の時は乱数を作り直す処理
+        # while True:
+        #     self.joint_range = random.uniform(config['joint_min_range'],config['joint_max_range'])
+        #     if self.joint_range != config['through_joint_range']: 
+        #         break
 
         # Pick which actuators to disable
         # joint rangeを変更する足をマスクで表現、99を代入しておく
@@ -158,7 +165,7 @@ def main():
 
     # Create and wrap the environment 
     env1 = gym.make(config['env'])
-    broken_env1 = ChangeJointRangeEnv(env1)
+    broken_env1 = ChangeJointRangeEnv(env1, k_max=args.k_max, k_min=args.k_min)
 
     # time, 図の名前を一意にするため
     now = dt.datetime.now()
@@ -167,8 +174,8 @@ def main():
     if args.video:
         broken_env1 = wrappers.Monitor(broken_env1,'./videos/' + args.loaddir + "-" + datetime.datetime.now().isoformat(),force=True,video_callable=(lambda ep: ep % 1 == 0)) # for output video
 
-    broken_env1 = DummyVecEnv([lambda :broken_env1]) 
     env1 = DummyVecEnv([lambda : env1])
+    broken_env1 = DummyVecEnv([lambda :broken_env1])     
 
     # agentName = ['Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2', 'UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015']
     # label = np.array(['Baseline', 'UDR', 'ADR_easy2hard', 'ADR_hard2easy', 'LDR_easy2hard', 'LDR_hard2easy'])
@@ -215,10 +222,10 @@ def main():
             for episode in tqdm(range(100)):
                 for i in range(1000):
                     # predict phase
-                    action_1,_states = trainedAnt.predict(plane_obs_1)
+                    action_1, _states = trainedAnt.predict(plane_obs_1)
 
                     # step phase
-                    plane_obs_1,reward_1,done_1,info_1 = env1.step(action_1)
+                    plane_obs_1, reward_1, done_1, info_1 = env1.step(action_1)
                     
                     rewards_1 += reward_1
 
@@ -236,11 +243,11 @@ def main():
             for episode in tqdm(range(100)):
                 for i in range(1000):
                     # predict phase
-                    action_1,_states = trainedAnt.predict(broken_obs_1)
+                    action_1, _states = trainedAnt.predict(broken_obs_1)
 
                     # step phase
                     # broken環境で評価する時
-                    broken_obs_1,reward_1,done_1,info_1 = broken_env1.step(action_1)
+                    broken_obs_1, reward_1, done_1, info_1 = broken_env1.step(action_1)
                 
                     rewards_1 += reward_1
 
@@ -254,7 +261,7 @@ def main():
             broken_reward_average1 = sum(broken_total_rewards_1)/len(broken_total_rewards_1)
             plainSeedAveReward.append(plane_reward_average1)
             brokenSeedAveReward.append(broken_reward_average1)
-
+            print("p:",plane_reward_average1, "b:", broken_reward_average1)
 
             del trainedAnt #
         
@@ -273,8 +280,8 @@ def main():
     brokenData = np.array(brokenData).flatten()
     perror = np.array(perror)
     berror = np.array(berror)
-    print(plainData)
-    print(brokenData)
+    print("plainAve: ", plainData)
+    print("brokenAve: ", brokenData)
     print(perror)
     print(berror)
 
