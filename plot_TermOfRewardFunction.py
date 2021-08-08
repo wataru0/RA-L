@@ -40,7 +40,8 @@ def main():
     # filename = ["Baseline", "UDR", "CDR-v1", "CDR-v2"]
     # filename = ["Baseline_CustomAnt", "UDR_CustomAnt", "CDR-v1_CustomAnt_bf1000", "CDR-v2_CustomAnt_bf1000", "CDR-v1_CustomAnt_upperfix_bf1000", "CDR-v2_CustomAnt_lowerfix_bf1000"]
     # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown", "UDR_CustomAnt-ReduceSRto0IfFallingDown", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_upperfix_bf100", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100"]
-    filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015"]
+    # filename = ["Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2", "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015", "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015", "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015"]
+    filename = ['Baseline_Ant-v2', 'UDR_Ant-v2_k0015', 'CDR-v1_Ant-v2_bf100_k0015', 'CDR-v2_Ant-v2_bf100_k0015', 'LCL-v1_Ant-v2_k0015', 'LCL-v2_Ant-v2_k0015']
     label = {
         "Baseline-16million-v3":"Baseline", 
         "random-16million":"UDR", 
@@ -67,6 +68,18 @@ def main():
         "UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015":"UDR", 
         "CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v1", 
         "CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015":"CDR-v2",
+        'Baseline_Ant-v2':'Baseline', 
+        'Baseline_Ant-v2_k08':'k=0.8', 
+        'Baseline_Ant-v2_k06':'k=0.6', 
+        'Baseline_Ant-v2_k04':'k=0.4', 
+        'Baseline_Ant-v2_k02':'k=0.2', 
+        'Baseline_Ant-v2_k00':'k=0.0',
+        'UDR_Ant-v2_k0015':'UDR', 
+        'CDR-v1_Ant-v2_bf100_k0015':'CDR_easy2hard', 
+        'CDR-v2_Ant-v2_bf100_k0015':'CDR_hard2easy', 
+        'CDR-v2_Ant-v2_bf100_k0010':'CDR_hard2easy',
+        'LCL-v1_Ant-v2_k0015':'LDR_easy2hard', 
+        'LCL-v2_Ant-v2_k0015':'LDR_hard2easy',
     }
 
     # Create figure dir
