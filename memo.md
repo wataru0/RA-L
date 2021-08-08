@@ -589,3 +589,10 @@ total_timestepsを4e6にした
 
 環境は CustomAnt-v0
 
+===
+# kを[0.5,1.0]でランダム化する学習
+## UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515
+## CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515
+## CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515
+## LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515
+## LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515

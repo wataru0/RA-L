@@ -132,7 +132,7 @@
 # python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_lowerfix_bf100 --seed=5 --algo=CDR-v2 --bound_fix
 
 # 2021/06/09
-# kのランダム化範囲を0.0~1.5に変更したもの
+# -----------------kのランダム化範囲を0.0~1.5に変更したもの-------------
 # python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=1 --algo=UDR
 # python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=2 --algo=UDR
 # python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015 --seed=3 --algo=UDR
@@ -321,12 +321,82 @@
 # python train.py --savedir=Baseline_Ant-v2_k14 --seed=4 --algo=Baseline --baseline_k=1.4
 # python train.py --savedir=Baseline_Ant-v2_k14 --seed=5 --algo=Baseline --baseline_k=1.4
 
-# SACでの学習
-# _SACがついていない今までのエージェントはPPOで学習したもの！！！！
-# Baseline
-python train.py --savedir=Baseline_Ant-v2_SAC --seed=1 --algo=Baseline --RL_algo=sac
-python train.py --savedir=Baseline_Ant-v2_SAC --seed=2 --algo=Baseline --RL_algo=sac
-python train.py --savedir=Baseline_Ant-v2_SAC --seed=3 --algo=Baseline --RL_algo=sac
-python train.py --savedir=Baseline_Ant-v2_SAC --seed=4 --algo=Baseline --RL_algo=sac
-python train.py --savedir=Baseline_Ant-v2_SAC --seed=5 --algo=Baseline --RL_algo=sac
+# # SACでの学習--------------------
+# # _SACがついていない今までのエージェントはPPOで学習したもの！！！！
+# # デフォルトのAnt-v2環境
+# # Baseline
+# python train.py --savedir=Baseline_Ant-v2_SAC --seed=1 --algo=Baseline --RL_algo=sac
+# python train.py --savedir=Baseline_Ant-v2_SAC --seed=2 --algo=Baseline --RL_algo=sac
+# python train.py --savedir=Baseline_Ant-v2_SAC --seed=3 --algo=Baseline --RL_algo=sac
+# python train.py --savedir=Baseline_Ant-v2_SAC --seed=4 --algo=Baseline --RL_algo=sac
+# python train.py --savedir=Baseline_Ant-v2_SAC --seed=5 --algo=Baseline --RL_algo=sac
 
+# # UDR
+# python train.py --savedir=UDR_Ant-v2_k0015_SAC --seed=1 --algo=UDR --RL_algo=sac
+# python train.py --savedir=UDR_Ant-v2_k0015_SAC --seed=2 --algo=UDR --RL_algo=sac
+# python train.py --savedir=UDR_Ant-v2_k0015_SAC --seed=3 --algo=UDR --RL_algo=sac
+# python train.py --savedir=UDR_Ant-v2_k0015_SAC --seed=4 --algo=UDR --RL_algo=sac
+# python train.py --savedir=UDR_Ant-v2_k0015_SAC --seed=5 --algo=UDR --RL_algo=sac
+
+# # CDR
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015_SAC --seed=1 --algo=CDR-v1 --RL_algo=sac
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015_SAC --seed=2 --algo=CDR-v1 --RL_algo=sac
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015_SAC --seed=3 --algo=CDR-v1 --RL_algo=sac
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015_SAC --seed=4 --algo=CDR-v1 --RL_algo=sac
+# python train.py --savedir=CDR-v1_Ant-v2_bf100_k0015_SAC --seed=5 --algo=CDR-v1 --RL_algo=sac
+
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015_SAC --seed=1 --algo=CDR-v2 --RL_algo=sac
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015_SAC --seed=2 --algo=CDR-v2 --RL_algo=sac
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015_SAC --seed=3 --algo=CDR-v2 --RL_algo=sac
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015_SAC --seed=4 --algo=CDR-v2 --RL_algo=sac
+# python train.py --savedir=CDR-v2_Ant-v2_bf100_k0015_SAC --seed=5 --algo=CDR-v2 --RL_algo=sac
+
+# # LCL
+# python train.py --savedir=LCL-v1_Ant-v2_k0015_SAC --seed=1 --algo=LCL-v1 --RL_algo=sac
+# python train.py --savedir=LCL-v1_Ant-v2_k0015_SAC --seed=2 --algo=LCL-v1 --RL_algo=sac
+# python train.py --savedir=LCL-v1_Ant-v2_k0015_SAC --seed=3 --algo=LCL-v1 --RL_algo=sac
+# python train.py --savedir=LCL-v1_Ant-v2_k0015_SAC --seed=4 --algo=LCL-v1 --RL_algo=sac
+# python train.py --savedir=LCL-v1_Ant-v2_k0015_SAC --seed=5 --algo=LCL-v1 --RL_algo=sac
+
+# python train.py --savedir=LCL-v2_Ant-v2_k0015_SAC --seed=1 --algo=LCL-v2 --RL_algo=sac
+# python train.py --savedir=LCL-v2_Ant-v2_k0015_SAC --seed=2 --algo=LCL-v2 --RL_algo=sac
+# python train.py --savedir=LCL-v2_Ant-v2_k0015_SAC --seed=3 --algo=LCL-v2 --RL_algo=sac
+# python train.py --savedir=LCL-v2_Ant-v2_k0015_SAC --seed=4 --algo=LCL-v2 --RL_algo=sac
+# python train.py --savedir=LCL-v2_Ant-v2_k0015_SAC --seed=5 --algo=LCL-v2 --RL_algo=sac
+# # ------------------------------
+
+# ＝＝＝＝＝＝＝＝＝＝＝＝＝＝kを[0.5,1.5]の範囲でランダム化する学習＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+# 環境はCustomAnt-v0
+
+python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=1 --algo=UDR
+python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=2 --algo=UDR
+python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=3 --algo=UDR
+python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=4 --algo=UDR
+python train.py --savedir=UDR_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=5 --algo=UDR
+
+# 提案手法
+# upper, lower fixしないトレーニング
+python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=1 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=2 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=3 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=4 --algo=CDR-v1
+python train.py --savedir=CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=5 --algo=CDR-v1
+
+python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=1 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=2 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=3 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=4 --algo=CDR-v2
+python train.py --savedir=CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0515 --seed=5 --algo=CDR-v2
+
+# Linear Curriculum Learningのトレーニング
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=1 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=2 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=3 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=4 --algo=LCL-v1
+python train.py --savedir=LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=5 --algo=LCL-v1
+
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=1 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=2 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=3 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=4 --algo=LCL-v2
+python train.py --savedir=LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0515 --seed=5 --algo=LCL-v2
