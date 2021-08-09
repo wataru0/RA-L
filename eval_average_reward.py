@@ -193,6 +193,8 @@ def main():
     for agent in agentName:
         plainSeedAveReward = []
         brokenSeedAveReward = []
+        plainSeedAveProgress = []
+        brokenSeedAveProgress = []
 
         load_dir = "./trained_agent_dir/" + agent +"/"
 
@@ -280,8 +282,6 @@ def main():
             # あるseed値のエージェントの全エピソードの平均progressを求める
             plain_forward_ave = sum(plain_episode_forward)/len(plain_episode_forward)
             broken_forward_ave = sum(broken_episode_forward)/len(broken_episode_forward)
-            plainSeedAveProgress = []
-            brokenSeedAveProgress = []
             plainSeedAveProgress.append(plain_forward_ave)
             brokenSeedAveProgress.append(broken_forward_ave)
             print("average progress,", "p:", plain_forward_ave, ",b:", broken_forward_ave)
