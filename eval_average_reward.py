@@ -176,9 +176,6 @@ def main():
 
     env1 = DummyVecEnv([lambda : env1])
     broken_env1 = DummyVecEnv([lambda :broken_env1])     
-
-    # agentName = ['Baseline_CustomAnt-ReduceSRto0IfFallingDown-v2', 'UDR_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'CDR-v1_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'CDR-v2_CustomAnt-ReduceSRto0IfFallingDown_bf100_k0015', 'LCL-v1_CustomAnt-ReduceSRto0IfFallingDown_k0015', 'LCL-v2_CustomAnt-ReduceSRto0IfFallingDown_k0015']
-    # label = np.array(['Baseline', 'UDR', 'ADR_easy2hard', 'ADR_hard2easy', 'LDR_easy2hard', 'LDR_hard2easy'])
     
     agentName = []
     agentName.append(args.agent)
@@ -215,8 +212,14 @@ def main():
             plane_obs_1 = env1.reset()
             broken_obs_1 = broken_env1.reset()
 
-            plane_total_rewards_1 = [] # 全エピソードの報酬格納
-            rewards_1 = 0
+            # ーーーーーーーーーーーーーplain環境ーーーーーーーーーーーーーーー
+            # 全エピソードの報酬格納
+            plane_total_rewards_1 = [] 
+            rewards_1 = 0.0
+
+            # 全エピソードのprogressを格納する配列
+            plain_episode_forward = []
+            forwards = 0.0
 
             # planeな歩行タスクでのrewardを求めるループ(100)
             for episode in tqdm(range(100)):
@@ -228,16 +231,24 @@ def main():
                     plane_obs_1, reward_1, done_1, info_1 = env1.step(action_1)
                     
                     rewards_1 += reward_1
+                    # print(info_1[0])
+                    forwards += info_1[0]['reward_forward']
 
                     if done_1:
                         break
                 plane_total_rewards_1.append(rewards_1) 
-                rewards_1 = 0
-        
+                rewards_1 = 0.0
 
+                plain_episode_forward.append(forwards)
+                forwards = 0.0
 
+            # ーーーーーーーーーーーーーbroken環境ーーーーーーーーーーーーーーー
             broken_total_rewards_1 = [] 
-            rewards_1 = 0
+            rewards_1 = 0.0
+
+            # 全エピソードのprogressを格納する配列
+            broken_episode_forward = []
+            forwards = 0.0
 
             # 故障が起きる環境でのrewardを求めるループ(100)
             for episode in tqdm(range(100)):
@@ -250,18 +261,31 @@ def main():
                     broken_obs_1, reward_1, done_1, info_1 = broken_env1.step(action_1)
                 
                     rewards_1 += reward_1
+                    forwards += info_1[0]['reward_forward']
 
                     if done_1:
                         break
                 broken_total_rewards_1.append(rewards_1)
-                rewards_1 = 0
+                rewards_1 = 0.0
 
+                broken_episode_forward.append(forwards)
+                forwards = 0.0
 
             plane_reward_average1 = sum(plane_total_rewards_1)/len(plane_total_rewards_1)
             broken_reward_average1 = sum(broken_total_rewards_1)/len(broken_total_rewards_1)
             plainSeedAveReward.append(plane_reward_average1)
             brokenSeedAveReward.append(broken_reward_average1)
-            print("p:",plane_reward_average1, "b:", broken_reward_average1)
+            print("average reward,", "p:", plane_reward_average1, ",b:", broken_reward_average1)
+
+            # あるseed値のエージェントの全エピソードの平均progressを求める
+            plain_forward_ave = sum(plain_episode_forward)/len(plain_episode_forward)
+            broken_forward_ave = sum(broken_episode_forward)/len(broken_episode_forward)
+            plainSeedAveProgress = []
+            brokenSeedAveProgress = []
+            plainSeedAveProgress.append(plain_forward_ave)
+            brokenSeedAveProgress.append(broken_forward_ave)
+            print("average progress,", "p:", plain_forward_ave, ",b:", broken_forward_ave)
+
 
             del trainedAnt #
         
@@ -275,6 +299,12 @@ def main():
         broken_error = np.std(brokenSeedAveReward,ddof=1)/np.sqrt(len(brokenSeedAveReward))
         berror.append(broken_error)
 
+        # 全seed値でのprogressの平均を取る
+        plain_seed_ave_progress = sum(plainSeedAveProgress)/len(plainSeedAveProgress)
+        broken_seed_ave_progress = sum(brokenSeedAveProgress)/len(brokenSeedAveProgress)
+        plain_progress_error = np.std(plainSeedAveProgress,ddof=1)/np.sqrt(len(plainSeedAveProgress))
+        broken_progress_error = np.std(brokenSeedAveProgress,ddof=1)/np.sqrt(len(brokenSeedAveProgress))
+
 
     plainData = np.array(plainData).flatten()
     brokenData = np.array(brokenData).flatten()
@@ -285,23 +315,21 @@ def main():
     print(perror)
     print(berror)
 
+    print("plainProgressAve: ", plain_seed_ave_progress)
+    print("brokenProgressAve: ", broken_seed_ave_progress)
+    print(plain_progress_error)
+    print(broken_progress_error)
+
     # 結果のndarray（各手法の平均報酬）をdataとして保存
     np.save(nd_dir + "plainAverageReward", plainData)
     np.save(nd_dir + "brokenAverageReward", brokenData)
     np.save(nd_dir + "plainError", perror)
     np.save(nd_dir + "brokenError", berror)
 
-    # # figにプロットしていく
-    # ax.bar(x-width/2,plainData,width=width,color='blue',align='center',label='plain',yerr=perror)
-    # ax.bar(x+width/2,brokenData,width=width,color='darkorange',align='center',label='broken',yerr=berror)
-    # ax.set_ylabel('Average Reward')
-    # plt.tick_params(labelsize=7)
-    # ax.set_xticks(x)
-    # ax.set_xticklabels(label)
-    # ax.legend()
-    
-    # plt.savefig(figdir+'averageReward_{}.png'.format(time))
-
+    np.save(nd_dir + "plainAverageProgress", plain_seed_ave_progress)
+    np.save(nd_dir + "brokenAverageProgress", broken_seed_ave_progress)
+    np.save(nd_dir + "plainProgressError", plain_progress_error)
+    np.save(nd_dir + "brokenProgressError", broken_progress_error)
 
 if __name__=='__main__':
     main()
