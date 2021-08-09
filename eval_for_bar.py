@@ -202,7 +202,7 @@ def main():
             survives = 0
 
             # kを0から1.5まで，0.1刻みで変化させる
-            for k in tqdm(range(0, 151, 10)):
+            for k in tqdm(range(0, 101, 10)):
                 # 故障が起きる環境でのrewardを求めるループ(100)
                 for episode in range(args.n_episodes):
                     # iteration of time steps, default is 1000 time steps
